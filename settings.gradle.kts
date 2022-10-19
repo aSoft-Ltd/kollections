@@ -36,7 +36,7 @@ rootProject.name = "asoft"
 
 // dependencies
 includeSubs("functions", "../functions", "core")
-includeSubs("expect", "../expect", "core", "coroutines")
+includeSubs("expect", "../expect", "core")
 
 // submodules
-includeSubs("kollections", ".", "api")
+includeSubs("kollections", ".", "interoperable")
