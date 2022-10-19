@@ -1,0 +1,6 @@
+[versions]
+docker = "7.1.0"
+
+[plugins]
+root-docker = { id = "com.bmuschko.docker-java-application", version.ref = "docker" }
+docker = { id = "com.bmuschko.docker-java-application" }

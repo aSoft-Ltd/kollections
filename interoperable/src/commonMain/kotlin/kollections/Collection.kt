@@ -14,6 +14,7 @@ interface Collection<out E> : Iterable<E>, KCollection<E> {
     override val size: Int
 
     override fun contains(element: @UnsafeVariance E): Boolean
+
     fun forEach(lambda: (item: E) -> Unit) {
         for (item in this) lambda(item)
     }

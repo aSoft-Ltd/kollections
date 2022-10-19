@@ -1,8 +1,8 @@
 [versions]
+root = "2.0.14"
 foundation = "1.5.3"
 stdlib = "0.2.43"
-root = "2.0.13"
-tmp = "00.00.03"
+tmp = "00.00.06"
 
 [libraries]
 applikation-runtime = { module = "tz.co.asoft:applikation-runtime", version.ref = "foundation" }
@@ -32,14 +32,7 @@ identifier-core = { module = "tz.co.asoft:identifier-core", version.ref = "root"
 identifier-generators = { module = "tz.co.asoft:identifier-generators", version.ref = "root" }
 
 kotlinx-collections-interoperable = { module = "tz.co.asoft:kotlinx-collections-interoperable", version.ref = "foundation" }
-kotlinx-collections-atomic = { module = "tz.co.asoft:kotlinx-collections-atomic", version.ref = "foundation" }
 kotlinx-serialization-mapper = { module = "tz.co.asoft:kotlinx-serialization-mapper", version.ref = "foundation" }
-
-live-core = { module = "tz.co.asoft:live-core", version.ref = "root" }
-live-react = { module = "tz.co.asoft:live-react", version.ref = "root" }
-live-test = { module = "tz.co.asoft:live-test", version.ref = "root" }
-
-logging-console = { module = "tz.co.asoft:logging-console", version.ref = "foundation" }
 
 platform-core = { module = "tz.co.asoft:platform-core", version.ref = "foundation" }
 
@@ -49,11 +42,25 @@ reakt-core = { module = "tz.co.asoft:reakt-core", version.ref = "stdlib" }
 reakt-icons = { module = "tz.co.asoft:reakt-icons", version.ref = "stdlib" }
 reakt-web = { module = "tz.co.asoft:reakt-web", version.ref = "stdlib" }
 
+functions-core = { module = "tz.co.asoft:functions-core", version.ref = "root" }
+
+kotlinx-browser = { module = "tz.co.asoft:kotlinx-browser", version.ref = "foundation" }
+kotlinx-collections-atomic = { module = "tz.co.asoft:kotlinx-collections-atomic", version.ref = "foundation" }
+
+live-core = { module = "tz.co.asoft:live-core", version.ref = "root" }
+live-compose = { module = "tz.co.asoft:live-compose", version.ref = "root" }
+live-coroutines = { module = "tz.co.asoft:live-coroutines", version.ref = "root" }
+live-react = { module = "tz.co.asoft:live-react", version.ref = "root" }
+live-test = { module = "tz.co.asoft:live-test", version.ref = "root" }
+
+logging-console = { module = "tz.co.asoft:logging-console", version.ref = "foundation" }
+logging-test-android = { module = "tz.co.asoft:logging-test-android", version.ref = "foundation" }
+
 viewmodel-core = { module = "tz.co.asoft:viewmodel-core", version.ref = "root" }
 
 foundation-plugins = { module = "tz.co.asoft:foundation-plugins", version.ref = "foundation" }
 
 [plugins]
-library = { id = "tz.co.asoft.library", version.ref = "foundation" }
 applikation = { id = "tz.co.asoft.applikation", version.ref = "foundation" }
+library = { id = "tz.co.asoft.library", version.ref = "foundation" }
 deploy = { id = "tz.co.asoft.deploy", version.ref = "foundation" }
