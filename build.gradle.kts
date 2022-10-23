@@ -9,6 +9,22 @@
     alias(nexus.plugins.publish)
     alias(asoft.plugins.deploy)
 }
+
+repositories {
+            publicRepos()
+            maven {
+                name = "piCortex"
+                url = uri("http://${picortex.versions.server.ip.get()}:1050/repository/internal/")
+                isAllowInsecureProtocol = true
+                credentials {
+                    username = "admin"
+                    password = "admin@123"
+                }
+            }
+            mavenLocal()
+		    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+        }
+
 val tmp = 0
 allprojects {
     beforeEvaluate {
@@ -24,6 +40,7 @@ allprojects {
                 }
             }
             mavenLocal()
+		    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
         }
         group = "com.picortex"
         version = picortex.versions.picortex.get()

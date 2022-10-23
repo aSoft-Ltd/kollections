@@ -1,6 +1,6 @@
 [versions]
 kotlin = "1.7.10"
-compose = "1.2.0-alpha01-dev755" # "1.0.1"
+compose = "1.2.0" # "1.0.1"
 dokka = "1.7.0"
 
 [libraries]
