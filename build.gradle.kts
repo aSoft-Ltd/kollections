@@ -28,14 +28,4 @@ allprojects {
         group = "com.picortex"
         version = picortex.versions.picortex.get()
     }
-
-    afterEvaluate {
-        afterEvaluate {
-            tasks.configureEach {
-                if (name.endsWith("MainKotlinMetadata")) {
-                    enabled = false
-                }
-            }
-        }
-    }
 }

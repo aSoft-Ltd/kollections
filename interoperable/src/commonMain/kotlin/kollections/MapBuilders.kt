@@ -10,6 +10,7 @@ import kotlin.js.JsExport
 import kotlin.js.JsName
 
 private fun <K, V> MapEntry<K, V>.toPair() = Pair(key, value)
+
 fun <K, V> pairOf(key: K, value: V): MapEntry<K, V> = MapEntryImpl(key, value)
 
 infix fun <K, V> K.to(value: V): MapEntry<K, V> = MapEntryImpl(this, value)
