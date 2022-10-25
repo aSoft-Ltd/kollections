@@ -1,5 +1,5 @@
 [versions]
-npmPublish = "2.1.2"
+npmPublish = "3.0.3"
 
 [plugins]
 root-npm-publish = { id = "dev.petuska.npm.publish", version.ref = "npmPublish" }
