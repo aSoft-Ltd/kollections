@@ -1,5 +1,5 @@
 [versions]
-picortex = "0.01.04"
+picortex = "0.01.05"
 authenticator = "0.0.06"
 bitframe = "0.10.55"
 server-ip = "65.21.254.230"
