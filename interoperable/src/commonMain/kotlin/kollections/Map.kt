@@ -18,4 +18,6 @@ interface Map<K, out V> : KMap<K, V>, Collection<MapEntry<K, V>> {
     override fun containsValue(value: @UnsafeVariance V): Boolean = values.contains(value)
 
     override operator fun get(key: K): V?
+
+    fun getValue(key: K): V
 }

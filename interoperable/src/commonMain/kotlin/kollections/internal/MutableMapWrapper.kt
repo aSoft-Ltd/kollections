@@ -22,6 +22,10 @@ internal open class MutableMapWrapper<K, V>(private val map: KMutableMap<K, V>) 
 
     override val values: MutableCollection<V> = map.values.toIMutableList()
 
+    override fun get(key: K): V? = map[key]
+
+    override fun getValue(key: K): V = map.getValue(key)
+
     override fun contains(element: MapEntry<K, V>): Boolean = pairs.contains(element)
 
     override fun containsAll(elements: Collection<MapEntry<K, V>>): Boolean = pairs.containsAll(elements)
