@@ -3,6 +3,7 @@ coroutines = "1.6.3"
 serialization = "1.3.3"
 datetime = "0.3.3"
 ktoml = "0.2.11"
+yaml = "0.12.0"
 cli = "0.3.5"
 
 [libraries]
@@ -14,6 +15,8 @@ coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-androi
 
 serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "serialization" }
 serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
+serialization-yaml = { module = "net.mamoe.yamlkt:yamlkt", version.ref = "yaml" }
+
 serialization-toml-core = { module = "com.akuleshov7:ktoml-core", version.ref = "ktoml" }
 
 datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "datetime" }
