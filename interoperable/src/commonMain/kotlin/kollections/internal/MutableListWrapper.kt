@@ -5,7 +5,7 @@ import kollections.MutableList
 import kollections.toIMutableList
 
 @PublishedApi
-internal class MutableListWrapper<E>(
+internal data class MutableListWrapper<E>(
     private val list: KMutableList<E>
 ) : MutableList<E>, KMutableList<E> by list {
 
