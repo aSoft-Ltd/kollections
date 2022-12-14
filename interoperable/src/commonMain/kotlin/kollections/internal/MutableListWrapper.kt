@@ -3,8 +3,10 @@ package kollections.internal
 import kotlin.collections.MutableList as KMutableList
 import kollections.MutableList
 import kollections.toIMutableList
+import kotlin.js.JsName
 
 @PublishedApi
+@JsName("MutableList")
 internal data class MutableListWrapper<E>(
     private val list: KMutableList<E>
 ) : MutableList<E>, KMutableList<E> by list {
@@ -23,4 +25,6 @@ internal data class MutableListWrapper<E>(
         fromIndex: Int,
         toIndex: Int
     ): MutableList<E> = list.subList(fromIndex, toIndex).toIMutableList()
+
+    override fun toString() = list.toString()
 }

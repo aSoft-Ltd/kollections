@@ -9,9 +9,11 @@ import kollections.MapEntry
 import kollections.toISet
 import kollections.Set
 import kotlin.collections.Collection
+import kotlin.js.JsName
 import kotlin.collections.MutableMap as KMutableMap
 
 @PublishedApi
+@JsName("MutableMap")
 internal open class MutableMapWrapper<K, V>(private val map: KMutableMap<K, V>) : MutableMap<K, V>, KMutableMap<K, V> by map {
 
     override val keys: MutableSet<K> get() = map.keys.toIMutableSet()

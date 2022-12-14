@@ -4,8 +4,9 @@ package kollections
 
 import kotlin.js.JsExport
 import kotlin.collections.associate as kAssociate
-
 import kotlin.collections.Collection as KCollection
+import kotlin.collections.first as kFirst
+import kotlin.collections.firstOrNull as kFirstOrNUll
 
 interface Collection<out E> : Iterable<E>, KCollection<E> {
 
@@ -50,4 +51,8 @@ interface Collection<out E> : Iterable<E>, KCollection<E> {
     fun <K, V> associate(transformer: (E) -> MapEntry<K, V>): Map<K, V> {
         return this.kAssociate { transformer(it).toPair() }.toIMap()
     }
+
+    fun first() : E = kFirst()
+
+    fun firstOrNull() : E? = kFirstOrNUll()
 }
