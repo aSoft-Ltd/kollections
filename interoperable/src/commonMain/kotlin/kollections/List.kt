@@ -3,12 +3,10 @@
 
 package kollections
 
-import kollections.serializers.ListSerializer
-import kotlinx.serialization.KSerializer
-import kotlinx.serialization.Serializable
-import kotlin.collections.List
-import kotlin.js.JsExport
 import kotlin.collections.List as KList
+import kollections.serializers.ListSerializer
+import kotlinx.serialization.Serializable
+import kotlin.js.JsExport
 
 @Serializable(with = ListSerializer::class)
 interface List<out E> : Collection<E>, KList<E> {

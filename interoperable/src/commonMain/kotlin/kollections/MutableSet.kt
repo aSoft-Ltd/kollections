@@ -8,6 +8,4 @@ import kotlin.js.JsExport
 import kotlin.collections.MutableSet as KMutableSet
 
 @Serializable(with = MutableSetSerializer::class)
-interface MutableSet<E> : Set<E>, KMutableSet<E>, MutableCollection<E> {
-
-}
+interface MutableSet<E> : Set<E>, KMutableSet<E>, MutableCollection<E>

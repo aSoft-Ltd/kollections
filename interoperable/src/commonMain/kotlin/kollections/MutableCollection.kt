@@ -2,9 +2,8 @@
 
 package kollections
 
-import kotlin.js.JsExport
-import kotlin.js.JsName
 import kotlin.collections.MutableCollection as KMutableCollection
+import kotlin.js.JsExport
 
 interface MutableCollection<E> : KMutableCollection<E>, Collection<E> {
 

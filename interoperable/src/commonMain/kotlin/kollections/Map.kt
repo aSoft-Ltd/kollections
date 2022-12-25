@@ -1,4 +1,5 @@
 @file:JsExport
+@file:Suppress("NON_EXPORTABLE_TYPE")
 
 package kollections
 
