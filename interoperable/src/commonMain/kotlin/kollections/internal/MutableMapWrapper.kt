@@ -1,20 +1,22 @@
 package kollections.internal
 
-import kollections.MutableSet
-import kollections.toIMutableSet
-import kollections.toIMutableList
+import kotlin.collections.Collection as KCollection
+import kotlin.collections.MutableMap as KMutableMap
+import kollections.MapEntry
 import kollections.MutableCollection
 import kollections.MutableMap
-import kollections.MapEntry
-import kollections.toISet
+import kollections.MutableSet
 import kollections.Set
-import kotlin.collections.Collection
+import kollections.toIMutableList
+import kollections.toIMutableSet
+import kollections.toISet
 import kotlin.js.JsName
-import kotlin.collections.MutableMap as KMutableMap
 
 @PublishedApi
 @JsName("MutableMap")
-internal open class MutableMapWrapper<K, V>(private val map: KMutableMap<K, V>) : MutableMap<K, V>, KMutableMap<K, V> by map {
+internal open class MutableMapWrapper<K, V>(
+    private val map: KMutableMap<K, V>
+) : AbstractCollection<MapEntry<K, V>>(), MutableMap<K, V>, KMutableMap<K, V> by map {
 
     override val keys: MutableSet<K> get() = map.keys.toIMutableSet()
 
@@ -30,7 +32,7 @@ internal open class MutableMapWrapper<K, V>(private val map: KMutableMap<K, V>) 
 
     override fun contains(element: MapEntry<K, V>): Boolean = pairs.contains(element)
 
-    override fun containsAll(elements: Collection<MapEntry<K, V>>): Boolean = pairs.containsAll(elements)
+    override fun containsAll(elements: KCollection<MapEntry<K, V>>): Boolean = pairs.containsAll(elements)
 
     override fun iterator(): Iterator<MapEntry<K, V>> = pairs.iterator()
 

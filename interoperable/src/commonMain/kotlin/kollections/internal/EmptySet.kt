@@ -5,6 +5,6 @@ import kotlin.collections.emptySet as kEmptySet
 import kollections.Set
 
 @PublishedApi
-internal object EmptySet : Set<Nothing>, KSet<Nothing> by kEmptySet() {
+internal object EmptySet : AbstractCollection<Nothing>(), Set<Nothing>, KSet<Nothing> by kEmptySet() {
     override fun toString(): String = "[]"
 }

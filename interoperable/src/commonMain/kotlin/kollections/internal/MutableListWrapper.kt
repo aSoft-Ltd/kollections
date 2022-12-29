@@ -2,6 +2,7 @@ package kollections.internal
 
 import kotlin.collections.MutableList as KMutableList
 import kollections.MutableList
+import kollections.internal.AbstractCollection
 import kollections.toIMutableList
 import kotlin.js.JsName
 
@@ -9,7 +10,7 @@ import kotlin.js.JsName
 @JsName("MutableList")
 internal data class MutableListWrapper<E>(
     private val list: KMutableList<E>
-) : MutableList<E>, KMutableList<E> by list {
+) : AbstractCollection<E>(), MutableList<E>, KMutableList<E> by list {
 
     override fun addAll(elements: Collection<E>): Boolean = list.addAll(elements)
 

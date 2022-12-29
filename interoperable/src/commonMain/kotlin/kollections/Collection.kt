@@ -1,12 +1,10 @@
 @file:JsExport
+@file:Suppress("NON_EXPORTABLE_TYPE")
 
 package kollections
 
-import kotlin.js.JsExport
-import kotlin.collections.associate as kAssociate
 import kotlin.collections.Collection as KCollection
-import kotlin.collections.first as kFirst
-import kotlin.collections.firstOrNull as kFirstOrNUll
+import kotlin.js.JsExport
 
 interface Collection<out E> : Iterable<E>, KCollection<E> {
 
@@ -16,43 +14,21 @@ interface Collection<out E> : Iterable<E>, KCollection<E> {
 
     override fun contains(element: @UnsafeVariance E): Boolean
 
-    fun forEach(lambda: (item: E) -> Unit) {
-        for (item in this) lambda(item)
-    }
+    fun forEach(lambda: (item: E) -> Unit)
 
-    fun forEachWithIndex(lambda: (item: E, index: Int) -> Unit) {
-        for (item in this) lambda(item, indexOf(item))
-    }
+    fun forEachWithIndex(lambda: (item: E, index: Int) -> Unit)
 
-    fun <O> map(transform: (item: E) -> O): List<O> {
-        val l = iMutableListOf<O>()
-        for (item in this) l.add(transform(item))
-        return l
-    }
+    fun <R> map(transform: (item: E) -> R): List<R>
 
-    fun <O> mapToArray(transform: (item: E) -> O): Array<out O> {
-        val array: Array<in Any?> = Array(size) { null }
-        forEachWithIndex { e, index -> array[index] = transform(e) }
-        return array as Array<out O>
-    }
+    fun <R> mapToArray(transform: (item: E) -> R): Array<out R>
 
-    fun <O> mapToArrayWithIndex(transform: (item: E, index: Int) -> O): Array<out O> {
-        val array: Array<in Any?> = Array(size) { null }
-        forEachWithIndex { e, index -> array[index] = transform(e, index) }
-        return array as Array<out O>
-    }
+    fun <R> mapToArrayWithIndex(transform: (item: E, index: Int) -> R): Array<out R>
 
-    fun <O> mapWithIndex(transform: (item: E, index: Int) -> O): List<O> {
-        val l = iMutableListOf<O>()
-        for (item in this) l.add(transform(item, indexOf(item)))
-        return l
-    }
+    fun <R> mapWithIndex(transform: (item: E, index: Int) -> R): List<R>
 
-    fun <K, V> associate(transformer: (E) -> MapEntry<K, V>): Map<K, V> {
-        return this.kAssociate { transformer(it).toPair() }.toIMap()
-    }
+    fun <K, V> associate(transformer: (E) -> MapEntry<K, V>): Map<K, V>
 
-    fun first() : E = kFirst()
+    fun first(): E
 
-    fun firstOrNull() : E? = kFirstOrNUll()
+    fun firstOrNull(): E?
 }

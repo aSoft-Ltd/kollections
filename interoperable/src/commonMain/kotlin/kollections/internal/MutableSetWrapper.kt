@@ -6,7 +6,9 @@ import kotlin.js.JsName
 
 @PublishedApi
 @JsName("MutableSet")
-internal open class MutableSetWrapper<E>(private val set: KMutableSet<E>) : MutableSet<E>, KMutableSet<E> by set {
+internal open class MutableSetWrapper<E>(
+    private val set: KMutableSet<E>
+) : AbstractCollection<E>(), MutableSet<E>, KMutableSet<E> by set {
     override fun toString(): String = set.toString()
 
     override fun hashCode(): Int = set.hashCode()
