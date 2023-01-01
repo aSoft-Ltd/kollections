@@ -23,16 +23,16 @@ abstract class AbstractCollection<E> : AbstractIterable<E>(), Collection<E> {
 
     override fun <R> map(transform: (item: E) -> R): List<R> = kMap(transform).toIList()
 
-    override fun <R> mapToArray(transform: (item: E) -> R): Array<out R> {
+    override fun <R> mapToArray(transform: (item: E) -> R): Array<R> {
         val array: Array<in Any?> = Array(size) { null }
         forEachWithIndex { e, index -> array[index] = transform(e) }
-        return array as Array<out R>
+        return array as Array<R>
     }
 
-    override fun <R> mapToArrayWithIndex(transform: (item: E, index: Int) -> R): Array<out R> {
+    override fun <R> mapToArrayWithIndex(transform: (item: E, index: Int) -> R): Array<R> {
         val array: Array<in Any?> = Array(size) { null }
         forEachWithIndex { e, index -> array[index] = transform(e, index) }
-        return array as Array<out R>
+        return array as Array<R>
     }
 
     override fun <R> mapWithIndex(transform: (item: E, index: Int) -> R): List<R> = kMapIndex { index, e -> transform(e, index) }.toIList()

@@ -20,9 +20,9 @@ interface Collection<out E> : Iterable<E>, KCollection<E> {
 
     fun <R> map(transform: (item: E) -> R): List<R>
 
-    fun <R> mapToArray(transform: (item: E) -> R): Array<out R>
+    fun <R> mapToArray(transform: (item: E) -> R): Array<R>
 
-    fun <R> mapToArrayWithIndex(transform: (item: E, index: Int) -> R): Array<out R>
+    fun <R> mapToArrayWithIndex(transform: (item: E, index: Int) -> R): Array<R>
 
     fun <R> mapWithIndex(transform: (item: E, index: Int) -> R): List<R>
 
