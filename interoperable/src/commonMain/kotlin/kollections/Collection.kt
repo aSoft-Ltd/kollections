@@ -26,7 +26,7 @@ interface Collection<out E> : Iterable<E>, KCollection<E> {
 
     fun <R> mapWithIndex(transform: (item: E, index: Int) -> R): List<R>
 
-    fun <K, V> associate(transformer: (E) -> MapEntry<K, V>): Map<K, V>
+    fun <K2, V2> associate(transformer: (E) -> MapEntry<K2, V2>): Map<K2, V2>
 
     fun first(): E
 
