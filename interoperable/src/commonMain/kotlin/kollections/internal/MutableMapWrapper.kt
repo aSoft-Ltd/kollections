@@ -30,6 +30,10 @@ internal open class MutableMapWrapper<K, V>(
 
     override fun getValue(key: K): V = map.getValue(key)
 
+    override fun set(key: K, value: V) {
+        put(key, value)
+    }
+
     override fun contains(element: MapEntry<K, V>): Boolean = pairs.contains(element)
 
     override fun containsAll(elements: KCollection<MapEntry<K, V>>): Boolean = pairs.containsAll(elements)
