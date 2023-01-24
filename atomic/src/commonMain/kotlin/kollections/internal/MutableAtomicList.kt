@@ -12,9 +12,11 @@ internal class MutableAtomicList<E>(
 ) : AbstractCollection<E>(), MutableList<E> {
     constructor(list: KMutableList<E>) : this(atomic(list))
 
-    private fun <T> doAction(run: (KMutableList<E>) -> T): T {
+    override val size: Int get() = atomic.value.size
+
+    private fun <R> doAction(block: (KMutableList<E>) -> R): R {
         val list = atomic.value.toMutableList()
-        val res = run(list)
+        val res = block(list)
         atomic.lazySet(list)
         return res
     }
@@ -29,7 +31,7 @@ internal class MutableAtomicList<E>(
 
     override fun listIterator(index: Int): MutableListIterator<E> = atomic.value.listIterator(index)
 
-    override fun set(index: Int, element: E): E = atomic.value.set(index, element)
+    override fun set(index: Int, element: E): E = doAction { it.set(index, element) }
 
     override fun subList(fromIndex: Int, toIndex: Int): MutableList<E> = atomic.value.subList(fromIndex, toIndex).toIMutableList()
 
@@ -37,14 +39,9 @@ internal class MutableAtomicList<E>(
 
     override fun addAll(index: Int, elements: KCollection<E>): Boolean = doAction { it.addAll(index, elements) }
 
-    override fun removeAt(index: Int): E = doAction { removeAt(index) }
+    override fun removeAt(index: Int): E = doAction { it.removeAt(index) }
 
-    override fun clear() {
-        atomic.lazySet(mutableListOf())
-    }
-
-    override val size: Int
-        get() = atomic.value.size
+    override fun clear() = atomic.lazySet(mutableListOf())
 
     override fun contains(element: E): Boolean = atomic.value.contains(element)
 
@@ -54,11 +51,11 @@ internal class MutableAtomicList<E>(
 
     override fun iterator(): MutableIterator<E> = atomic.value.iterator()
 
-    override fun add(element: E): Boolean = doAction { add(element) }
+    override fun add(element: E): Boolean = doAction { it.add(element) }
 
     override fun addAll(elements: KCollection<E>): Boolean = doAction { it.addAll(elements) }
 
-    override fun remove(element: E): Boolean = doAction { remove(element) }
+    override fun remove(element: E): Boolean = doAction { it.remove(element) }
 
     override fun removeAll(elements: KCollection<E>): Boolean = doAction { it.removeAll(elements) }
 

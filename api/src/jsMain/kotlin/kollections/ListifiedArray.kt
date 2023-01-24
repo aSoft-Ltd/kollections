@@ -5,7 +5,7 @@ internal class ListifiedArray<out T> : AbstractList<T>() {
     override fun get(index: Int): T = this.unsafeCast<Array<T>>()[index]
 
     override fun equals(other: Any?): Boolean = when (other) {
-        is Array<*> -> if (other.size != size) {
+        is Array<out Any?> -> if (other.size != size) {
             false
         } else {
             var areEqual = false
@@ -16,7 +16,7 @@ internal class ListifiedArray<out T> : AbstractList<T>() {
             areEqual
         }
 
-        is List<*> -> if (other.size != size) {
+        is List<Any?> -> if (other.size != size) {
             false
         } else {
             var areEqual = false

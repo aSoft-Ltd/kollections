@@ -18,9 +18,7 @@ internal class MutableAtomicMap<K, V>(
     override val entries get() = atomic.value.entries
     override val keys get() = atomic.value.keys.toIMutableSet()
     override val values get() = atomic.value.values.toIMutableList()
-
-    override val size: Int
-        get() = atomic.value.size
+    override val size get() = atomic.value.size
 
     override fun containsKey(key: K): Boolean = atomic.value.containsKey(key)
 
@@ -30,15 +28,13 @@ internal class MutableAtomicMap<K, V>(
 
     override fun isEmpty(): Boolean = atomic.value.isEmpty()
 
-    override fun contains(element: MapEntry<K, V>): Boolean = get(element.key)==element.value
+    override fun contains(element: MapEntry<K, V>): Boolean = get(element.key) == element.value
 
     override fun iterator(): Iterator<MapEntry<K, V>> = entries.map { it.key to it.value }.iterator()
 
     override fun containsAll(elements: Collection<MapEntry<K, V>>): Boolean = entries.containsAll(entries)
 
-    override fun clear() {
-        atomic.lazySet(mutableMapOf())
-    }
+    override fun clear() = atomic.lazySet(mutableMapOf())
 
     override fun set(key: K, value: V) {
         put(key, value)
