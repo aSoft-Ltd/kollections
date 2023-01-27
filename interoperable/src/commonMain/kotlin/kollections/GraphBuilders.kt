@@ -3,19 +3,21 @@
 
 package kollections
 
-import kollections.internal.EmptyGraph
-import kollections.internal.MutableGraphImpl
+import kollections.internal.DirectedGraphImpl
+import kollections.internal.UndirectedGraphImpl
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
-@JsName("emptyMutableGraph")
-fun <N, E> iMutableGraphOf(): MutableGraph<N, E> = MutableGraphImpl()
+@JsName("undirectedGraph")
+fun <N, E> undirectedGraphOf(vararg nodes: N): MutableGraph<N, E> = UndirectedGraphImpl(*nodes)
 
-@JsName("mutableGraphOf")
-fun <N, E> iMutableGraphOf(vararg elements: N): MutableGraph<N, E> = MutableGraphImpl(*elements)
+@JsName("directedGraphOf")
+fun <N, E> directedGraphOf(vararg nodes: N): MutableGraph<N, E> = DirectedGraphImpl(*nodes)
 
-@JsName("emptyGraph")
-fun <N, E> iEmptyGraph(): Graph<N, E> = EmptyGraph
+inline fun <N, E> buildDirectedGraph(
+    vararg nodes: N,
+    builder: MutableGraph<N, E>.() -> Unit
+): MutableGraph<N, E> = DirectedGraphImpl<N, E>().apply(builder)
 
 @JsName("graphOf")
-fun <N, E> graphOf(vararg elements: N): Graph<N, E> = MutableGraphImpl(*elements)
+fun <N, E> graphOf(vararg nodes: N): Graph<N, E> = UndirectedGraphImpl(*nodes)
