@@ -10,6 +10,7 @@ import kotlin.js.JsExport
 
 @Serializable(with = ListSerializer::class)
 interface List<out E> : Collection<E>, KList<E> {
+
     override operator fun get(index: Int): E
 
     override fun indexOf(element: @UnsafeVariance E): Int

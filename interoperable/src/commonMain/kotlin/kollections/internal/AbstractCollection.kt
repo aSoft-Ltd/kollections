@@ -2,6 +2,7 @@ package kollections.internal
 
 import kotlin.collections.associate as kAssociate
 import kotlin.collections.first as kFirst
+import kotlin.collections.filter as kFilter
 import kotlin.collections.firstOrNull as kFirstOrNull
 import kotlin.collections.forEach as kForEach
 import kotlin.collections.forEachIndexed as kForEachIndexed
@@ -13,9 +14,10 @@ import kollections.Map
 import kollections.MapEntry
 import kollections.toIList
 import kollections.toIMap
-import kotlin.collections.mapIndexed
 
 abstract class AbstractCollection<E> : AbstractIterable<E>(), Collection<E> {
+
+    override fun filter(predicate: (E) -> Boolean): List<E> = kFilter(predicate).toIList()
 
     override fun forEach(lambda: (item: E) -> Unit) = kForEach(lambda)
 

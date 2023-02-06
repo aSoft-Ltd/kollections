@@ -7,6 +7,7 @@ import kotlin.collections.Collection as KCollection
 import kotlin.js.JsExport
 
 interface FunctionalCollection<out E> : Iterable<E>, KCollection<E> {
+    fun filter(predicate: (E) -> Boolean): List<E>
 
     fun forEach(lambda: (item: E) -> Unit)
 
