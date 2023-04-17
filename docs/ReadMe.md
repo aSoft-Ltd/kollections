@@ -14,18 +14,6 @@ dependencies {
 }
 ```
 
-## Nullability
-```kotlin
-val name: String? = null
-expect(name).toBeNull()
-
-val age: Int = 0
-expect(age).toBeNonNull()
-```
-
-## Custom Assertions
-You can create your custom assertions easily in kotlin as well
-
 [//]: # ([inject]&#40;../core/src/commonTest/kotlin/samples/CustomAssertionsTest.kt&#41;)
 
 ## Api Reference
