@@ -1,6 +1,0 @@
-[versions]
-mail = "1.6.2"
-
-[libraries]
-mail-api = { module = "javax.mail:javax.mail-api", version.ref = "mail" }
-mail = { module = "com.sun.mail:javax.mail", version.ref = "mail" }

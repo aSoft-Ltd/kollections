@@ -9,7 +9,7 @@ pluginManagement {
 
     dependencyResolutionManagement {
         versionCatalogs {
-            file("gradle/versions").listFiles().map {
+            file("../versions/gradle/versions").listFiles().map {
                 it.nameWithoutExtension to it.absolutePath
             }.forEach { (name, path) ->
                 create(name) { from(files(path)) }
@@ -30,13 +30,12 @@ fun includeSubs(base: String, path: String = base, vararg subs: String) {
     }
 }
 
-val tmp = 1
+rootProject.name = "Kollections"
 
-rootProject.name = "asoft"
-
+includeBuild("../able")
 // dependencies
 includeSubs("functions", "../functions", "core")
-includeSubs("expect", "../expect", "core")
+includeSubs("kommander", "../kommander", "core","coroutines")
 
 // submodules
-includeSubs("kollections", ".", "interoperable")
+includeSubs("kollections", ".", "api", "interoperable", "atomic")

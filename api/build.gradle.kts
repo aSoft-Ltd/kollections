@@ -7,9 +7,17 @@ plugins {
 }
 
 kotlin {
-    jvm { library() }
-    js(IR) { library() }
-    val nativeTargets = linuxTargets(true)
+    if (Targeting.JVM) jvm { library() }
+
+    if (Targeting.JS) js(IR) { library() }
+
+//    if (Targeting.WASM) wasm { library() }
+    val osxTargets = if (Targeting.OSX) osxTargets() else listOf()
+//    val ndkTargets = if (Targeting.NDK) ndkTargets() else listOf()
+    val linuxTargets = if (Targeting.LINUX) linuxTargets() else listOf()
+    val mingwTargets = if (Targeting.MINGW) mingwTargets() else listOf()
+
+    val nativeTargets = osxTargets + /*ndkTargets +*/ linuxTargets + mingwTargets
 
     sourceSets {
         val commonMain by getting {
@@ -20,7 +28,7 @@ kotlin {
 
         val commonTest by getting {
             dependencies {
-                api(projects.expectCore)
+                api(projects.kommanderCore)
             }
         }
 
@@ -28,11 +36,15 @@ kotlin {
             dependsOn(commonMain)
         }
 
-        val jvmMain by getting {
-            dependsOn(nonJsMain)
+        if(Targeting.JVM) {
+            val jvmMain by getting {
+                dependsOn(nonJsMain)
+            }
         }
 
-        val jsMain by getting {}
+        if(Targeting.JS) {
+            val jsMain by getting {}
+        }
 
         (nativeTargets).forEach {
             val main by it.compilations.getting {}

@@ -11,20 +11,23 @@
 }
 
 repositories {
-	publicRepos()
-	mavenLocal()
-	maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+    publicRepos()
 }
 
-val tmp = 0
+subprojects {
+    apply(plugin = "org.jetbrains.dokka")
+}
+
+tasks.dokkaHtmlMultiModule {
+    moduleName.set("Kollections")
+    outputDirectory.set(rootDir.resolve("docs"))
+    moduleVersion.set(asoft.versions.root.get())
+    includes.from("ReadMe.md")
+}
+
 allprojects {
     beforeEvaluate {
-        repositories {
-            publicRepos()
-            mavenLocal()
-		    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-        }
         group = "tz.co.asoft"
-        version = "0.0.0"
+        version = asoft.versions.root.get()
     }
 }
