@@ -14,7 +14,7 @@ plugins {
     signing
 }
 
-apply(plugin = "kotlinx-atomicfu")
+//apply(plugin = "kotlinx-atomicfu")
 
 kotlin {
     if (Targeting.JVM) jvm { library() }
