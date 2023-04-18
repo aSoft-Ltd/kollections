@@ -1,8 +1,20 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("org.jetbrains.kotlinx:atomicfu-gradle-plugin:${kotlinx.versions.atomicfu.get()}")
+    }
+}
+
 plugins {
     kotlin("multiplatform")
     id("tz.co.asoft.library")
     signing
 }
+
+apply(plugin = "kotlinx-atomicfu")
 
 kotlin {
     if (Targeting.JVM) jvm { library() }
