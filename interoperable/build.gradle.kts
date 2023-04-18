@@ -38,7 +38,7 @@ kotlin {
             dependsOn(commonMain)
         }
 
-        if(Targeting.JVM) {
+        if (Targeting.JVM) {
             val jvmMain by getting {
                 dependsOn(nonJsMain)
             }

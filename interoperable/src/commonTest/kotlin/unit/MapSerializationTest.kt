@@ -1,6 +1,6 @@
 package unit
 
-import expect.expect
+import kommander.expect
 import kollections.MutableMap
 import kollections.Map
 import kollections.iMutableListOf
@@ -39,7 +39,8 @@ class MapSerializationTest {
 
     @Test
     fun should_deserialize_from_json() {
-        val p = Json.decodeFromString<Person>("""{"name":"Anderson","friends":{"One":{"name":"One"},"Two":{"name":"two"}}}""")
+        val p =
+            Json.decodeFromString<Person>("""{"name":"Anderson","friends":{"One":{"name":"One"},"Two":{"name":"two"}}}""")
         println(p)
         expect(p.name).toBe("Anderson")
     }

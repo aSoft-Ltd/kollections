@@ -1,7 +1,7 @@
 package unit
 
-import expect.expect
-import expect.expectCollection
+import kommander.expect
+import kommander.expectCollection
 import kollections.iEmptyList
 import kotlin.test.Test
 
