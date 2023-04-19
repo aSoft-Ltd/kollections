@@ -30,7 +30,7 @@ fun includeSubs(base: String, path: String = base, vararg subs: String) {
     }
 }
 
-rootProject.name = "Kollections"
+rootProject.name = "kollections"
 
 includeBuild("../able")
 // dependencies
