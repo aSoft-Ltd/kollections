@@ -2,7 +2,7 @@
 
 An abstractions of kollections that are easily interoperable with Javascript/Typescript and swift
 
-![Maven](https://img.shields.io/maven-central/v/tz.co.asoft/kollections-interoperable/unspecified?style=for-the-badge)
+![Maven](https://img.shields.io/maven-central/v/tz.co.asoft/kollections-interoperable/2.0.16?style=for-the-badge)
 ![Kotlin](https://img.shields.io/badge/kotlin-multiplatform-blue?style=for-the-badge&logo=kotlin&logoColor=white)
 ![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=&logoColor=white)
@@ -15,9 +15,9 @@ An abstractions of kollections that are easily interoperable with Javascript/Typ
 
 ```kotlin
 dependencies {
-    implementation("tz.co.asoft:kollections-interoperable:unspecified")
+    implementation("tz.co.asoft:kollections-interoperable:2.0.16")
     // - - - - - or - - - - - 
-    implementation("tz.co.asoft:kollections-atomic:unspecified")
+    implementation("tz.co.asoft:kollections-atomic:2.0.16")
 }
 ```
 
