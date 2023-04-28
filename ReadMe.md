@@ -2,7 +2,7 @@
 
 An abstractions of kollections that are easily interoperable with Javascript/Typescript and swift
 
-![Maven](https://img.shields.io/maven-central/v/tz.co.asoft/kollections/unspecified?style=for-the-badge)
+![Maven](https://img.shields.io/maven-central/v/tz.co.asoft/kollections/2.0.16?style=for-the-badge)
 ![Kotlin](https://img.shields.io/badge/kotlin-multiplatform-blue?style=for-the-badge&logo=kotlin&logoColor=white)
 ![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=&logoColor=white)
@@ -11,20 +11,29 @@ An abstractions of kollections that are easily interoperable with Javascript/Typ
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 
+## Sample
+```kotlin
+import kollections.List
+import kollections.Map
+import kollections.Set
+
+val numberSet = iSetOf(1, 2, 3, 4, 5) // Interoperable set of
+val numberList = iListOf(1, 2, 3, 4, 5) // Interoperable list of
+val numberMap = iMapOf(1 to "one", 2 to "two")
+```
+
 ## Setup: Gradle
 
 ```kotlin
 dependencies {
-    implementation("tz.co.asoft:kollections-interoperable:unspecified")
+    implementation("tz.co.asoft:kollections-interoperable:2.0.16")
     // - - - - - or - - - - - 
-    implementation("tz.co.asoft:kollections-atomic:unspecified")
+    implementation("tz.co.asoft:kollections-atomic:2.0.16")
 }
 ```
 
-[//]: # ([inject]&#40;../core/src/commonTest/kotlin/samples/CustomAssertionsTest.kt&#41;)
-
 ## Api Reference
-The full api reference of the kolletions can be found at [https://asoft-ltd.github.io/kollections](https://asoft-ltd.github.io/kollections)
+The full api reference of the kollections can be found at [https://asoft-ltd.github.io/kollections](https://asoft-ltd.github.io/kollections)
 
 
 ## Support

@@ -4,6 +4,17 @@ An abstractions of kollections that are easily interoperable with Javascript/Typ
 
 [badges]
 
+## Sample
+```kotlin
+import kollections.List
+import kollections.Map
+import kollections.Set
+
+val numberSet = iSetOf(1, 2, 3, 4, 5) // Interoperable set of
+val numberList = iListOf(1, 2, 3, 4, 5) // Interoperable list of
+val numberMap = iMapOf(1 to "one", 2 to "two")
+```
+
 ## Setup: Gradle
 
 ```kotlin
@@ -14,10 +25,8 @@ dependencies {
 }
 ```
 
-[//]: # ([inject]&#40;../core/src/commonTest/kotlin/samples/CustomAssertionsTest.kt&#41;)
-
 ## Api Reference
-The full api reference of the kolletions can be found at [https://asoft-ltd.github.io/kollections](https://asoft-ltd.github.io/kollections)
+The full api reference of the kollections can be found at [https://asoft-ltd.github.io/kollections](https://asoft-ltd.github.io/kollections)
 
 
 ## Support
