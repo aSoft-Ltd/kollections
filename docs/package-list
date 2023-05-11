@@ -3,8 +3,6 @@ $dokka.linkExtension:html
 
 module:functions-core
 functions
-module:kollections-api
-kollections
 module:kollections-atomic
 kollections
 module:kollections-interoperable
