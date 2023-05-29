@@ -49,7 +49,7 @@ class LinearlyTraversableStackTest {
         expect(stack.toString()).toBe("[0,1,{2}]")
         expect(stack).toBeOfSize(3)
         expect(stack.top()).toBe(2)
-        expect(stack.back()).toBe(1)    // [0,{1},2]
+        expect(stack.backward()).toBe(1)    // [0,{1},2]
     }
 
     @Test
@@ -63,7 +63,7 @@ class LinearlyTraversableStackTest {
         expect(stack.toString()).toBe("[0,1,{2}]")
         expect(stack).toBeOfSize(3)
         expect(stack.top()).toBe(2)
-        expect(stack.back()).toBe(1)    // [0,{1},2]
+        expect(stack.backward()).toBe(1)    // [0,{1},2]
     }
 
     @Test
@@ -77,7 +77,7 @@ class LinearlyTraversableStackTest {
         expect(stack.current()).toBe(3)
         expect(stack).toBeOfSize(4)
         expect(stack.top()).toBe(2)
-        expect(stack.back()).toBe(1)     // [0,{1},3,2]
+        expect(stack.backward()).toBe(1)     // [0,{1},3,2]
     }
 
     @Test
@@ -86,8 +86,8 @@ class LinearlyTraversableStackTest {
         stack.push(0)   // [0]
         stack.push(1)   // [0,1]
         stack.push(2)   // [0,1,2]
-        stack.back()            // [0,{1},2]
-        stack.back()            // [{0},1,2]
+        stack.backward()            // [0,{1},2]
+        stack.backward()            // [{0},1,2]
         val el = stack.forward()// [0,{1},2]
         expect(stack).toBeOfSize(3)
         expect(stack.top()).toBe(2)
@@ -151,7 +151,7 @@ class LinearlyTraversableStackTest {
         expect(stack.current()).toBe("home")
         stack.insertTrimmingTop("about")                      // [home,{about}]
         expect(stack.current()).toBe("about")
-        expect(stack.back()).toBe("home")             // [{home},about]
+        expect(stack.backward()).toBe("home")             // [{home},about]
         stack.insertTrimmingTop("contacts")                   // [home,{contacts}]
         expect(stack.current()).toBe("contacts")
         expect(stack.go(-1)).toBe("home")       // [{home},contacts]
@@ -159,7 +159,7 @@ class LinearlyTraversableStackTest {
         stack.insertTrimmingTop("demo")                       // [home,contacts,{demo}]
         expect(stack.current()).toBe("demo")
         expect(stack.go(-2)).toBe("home")       // [{home},contacts,demo]
-        expect(stack.back()).toBeNull()                        //
+        expect(stack.backward()).toBeNull()                        //
     }
 
     @Test
@@ -169,7 +169,7 @@ class LinearlyTraversableStackTest {
         expect(stack.toString()).toBe("[{home}]")
         stack.insertTrimmingBottom("about")
         expect(stack.toString()).toBe("[{about}]")
-        expect(stack.back()).toBe(null)
+        expect(stack.backward()).toBe(null)
         stack.insert("contacts")
         expect(stack.toString()).toBe("[about,{contacts}]")
         stack.go(-1)

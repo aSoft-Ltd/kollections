@@ -9,6 +9,7 @@ import kotlin.math.min
 @PublishedApi
 internal class LinearlyTraversableStackImpl<E> : AbstractCollection<E>(), LinearlyTraversableStack<E> {
     private var cursor = 0
+
     private val list = mutableListOf<E>()
 
     override fun top(): E? = list.lastOrNull()
@@ -51,21 +52,21 @@ internal class LinearlyTraversableStackImpl<E> : AbstractCollection<E>(), Linear
 
     override fun iterator() = list.iterator()
 
-    override fun forward(): E? {
-        if (cursor + 1 >= size) return null
-        return list[++cursor]
-    }
+    override fun forward(): E? = go(1)
 
-    override fun back(): E? {
-        if (cursor <= 0) return null
-        return list[--cursor]
-    }
+    override fun backward(): E? = go(-1)
+
+    override fun canGoBackward(): Boolean = canGo(1)
+
+    override fun canGoForward(): Boolean = canGo(-1)
+
+    override fun canGo(steps: Int): Boolean = (cursor + steps) in 0 until size
 
     override fun go(steps: Int): E? {
+        if (!canGo(steps)) return null
         when {
             steps > 0 -> repeat(steps) { cursor = min(cursor + 1, size - 1) }
             steps < 0 -> repeat(-steps) { cursor = max(0, cursor - 1) }
-            else -> return list.firstOrNull()
         }
         return list.getOrNull(cursor)
     }
