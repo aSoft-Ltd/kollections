@@ -3,85 +3,81 @@ package kollections.internal
 import kollections.LinearlyTraversableStack
 import kollections.List
 import kollections.toIList
+import kotlin.math.max
+import kotlin.math.min
 
 @PublishedApi
 internal class LinearlyTraversableStackImpl<E> : AbstractCollection<E>(), LinearlyTraversableStack<E> {
-    internal var head: DoublyLinkedNode<E>? = null
-    private var cursor = head
-    override var size: Int = 0
+    private var cursor = 0
+    private val list = mutableListOf<E>()
 
-    override fun top(): E? = head?.element
+    override fun top(): E? = list.lastOrNull()
 
-    override fun toList(): List<E> = toKList().toIList()
+    override val size: Int get() = list.size
 
-    private fun toKList() = iterator().asSequence().toList()
+    override fun toList(): List<E> = list.toIList()
 
-    override fun containsAll(elements: Collection<E>): Boolean = toKList().containsAll(elements)
+    override fun containsAll(elements: Collection<E>): Boolean = list.containsAll(elements)
 
     override fun push(element: E) {
-        val newHead = DoublyLinkedNode(element)
-        val oldHead = head
-        if (oldHead != null) {
-            newHead.next = oldHead
-            oldHead.prev = newHead
-        }
-        head = newHead
-        size++
+        list.add(element)
     }
 
-    override fun pop(): E? {
-        val element = head?.element
-        head = head?.next
-        size--
-        return element
+    override fun current(): E? = list.getOrNull(cursor)
+
+    override fun pop(): E? = list.removeLastOrNull()
+
+    override fun canPop(): Boolean = list.isNotEmpty()
+
+    override fun isEmpty(): Boolean = list.isEmpty()
+
+    override fun insertTrimmingTop(element: E) {
+        insert(element)
+        list.retainAll(list.subList(0, cursor + 1))
     }
 
-    override fun canPop(): Boolean = head != null
+    override fun insertTrimmingBottom(element: E) {
+        insert(element)
+        list.retainAll(list.subList(cursor, list.size))
+        cursor = list.indexOf(element)
+    }
 
-    override fun isEmpty(): Boolean = size == 0
+    override fun insert(element: E) {
+        cursor = min(cursor + 1, list.size)
+        list.add(cursor, element)
+    }
 
-    override fun contains(element: E): Boolean = toKList().contains(element)
+    override fun contains(element: E): Boolean = list.contains(element)
 
-    override fun iterator() = LinearlyTraversableStackIteratorImpl(this)
+    override fun iterator() = list.iterator()
 
     override fun forward(): E? {
-        val crsr = cursor ?: head
-        val prev = crsr?.prev
-        val el = prev?.element
-        cursor = prev
-        return el
+        if (cursor + 1 >= size) return null
+        return list[++cursor]
     }
 
     override fun back(): E? {
-        val crsr = cursor ?: head
-        val next = crsr?.next
-        val el = next?.element
-        cursor = next
-        return el
+        if (cursor <= 0) return null
+        return list[--cursor]
     }
 
     override fun go(steps: Int): E? {
-        val crsr = cursor ?: head
-        var el: E?
         when {
-            steps > 0 -> {
-                var count = 0
-                do {
-                    el = forward()
-                    count++
-                } while (steps - count > 0 && el != null)
-            }
-
-            steps < 0 -> {
-                var count = 0
-                do {
-                    el = back()
-                    count++
-                } while (steps + count < 0 && el != null)
-            }
-
-            else -> el = crsr?.element
+            steps > 0 -> repeat(steps) { cursor = min(cursor + 1, size - 1) }
+            steps < 0 -> repeat(-steps) { cursor = max(0, cursor - 1) }
+            else -> return list.firstOrNull()
         }
-        return el
+        return list.getOrNull(cursor)
+    }
+
+    override fun toString() = buildString {
+        append("[")
+        val end = list.size - 1
+        for (i in list.indices) {
+            val el = list[i]
+            if (i == cursor) append("{$el}") else append(el)
+            if (i != end) append(",")
+        }
+        append("]")
     }
 }
