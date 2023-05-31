@@ -14,9 +14,9 @@ An abstractions of kollections that are easily interoperable with Javascript/Typ
 
 ```kotlin
 dependencies {
-    implementation("tz.co.asoft:kollections-interoperable:2.0.17")
+    implementation("tz.co.asoft:kollections-interoperable:2.0.18")
     // - - - - - or - - - - - 
-    implementation("tz.co.asoft:kollections-atomic:2.0.17")
+    implementation("tz.co.asoft:kollections-atomic:2.0.18")
 }
 ```
 
