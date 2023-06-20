@@ -16,4 +16,6 @@ interface CollectionLike<out E> : Iterable<E>, KCollection<E> {
     fun first(): E
 
     fun firstOrNull(): E?
+
+    fun joinToString(separator: String = ", ", transformer: (E) -> String = { it.toString() }): String
 }

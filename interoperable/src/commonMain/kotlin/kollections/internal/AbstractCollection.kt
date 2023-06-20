@@ -6,6 +6,7 @@ import kotlin.collections.filter as kFilter
 import kotlin.collections.firstOrNull as kFirstOrNull
 import kotlin.collections.forEach as kForEach
 import kotlin.collections.forEachIndexed as kForEachIndexed
+import kotlin.collections.joinToString as kJoinToString
 import kotlin.collections.map as kMap
 import kotlin.collections.mapIndexed as kMapIndex
 import kollections.Collection
@@ -46,4 +47,6 @@ abstract class AbstractCollection<E> : AbstractIterable<E>(), Collection<E> {
     override fun first(): E = kFirst()
 
     override fun firstOrNull(): E? = kFirstOrNull()
+
+    override fun joinToString(separator: String, transformer: (E) -> String): String = kJoinToString(separator = separator, transform = transformer)
 }
