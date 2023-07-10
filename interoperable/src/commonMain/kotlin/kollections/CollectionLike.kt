@@ -18,4 +18,8 @@ interface CollectionLike<out E> : Iterable<E>, KCollection<E> {
     fun firstOrNull(): E?
 
     fun joinToString(separator: String = ", ", transformer: (E) -> String = { it.toString() }): String
+
+    override fun iterator(): Iterator<E>
+
+//    override fun spliterator() : Spliterator<E>
 }

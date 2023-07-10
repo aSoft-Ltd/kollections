@@ -22,4 +22,6 @@ interface FunctionalCollection<out E> : Iterable<E>, KCollection<E> {
     fun <R> mapWithIndex(transform: (item: E, index: Int) -> R): List<R>
 
     fun <K2, V2> associate(transformer: (E) -> MapEntry<K2, V2>): Map<K2, V2>
+
+    override fun iterator(): Iterator<E>
 }

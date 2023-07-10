@@ -49,4 +49,6 @@ abstract class AbstractCollection<E> : AbstractIterable<E>(), Collection<E> {
     override fun firstOrNull(): E? = kFirstOrNull()
 
     override fun joinToString(separator: String, transformer: (E) -> String): String = kJoinToString(separator = separator, transform = transformer)
+
+    abstract override fun iterator(): Iterator<E>
 }
