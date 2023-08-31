@@ -26,7 +26,7 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 api(kotlinx.serialization.json)
-                implementation(projects.kommanderCore)
+                implementation(libs.kommander.core)
             }
         }
 

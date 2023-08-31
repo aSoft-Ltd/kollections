@@ -37,7 +37,7 @@ kotlin {
 
         val commonTest by getting {
             dependencies {
-                implementation(projects.kommanderCoroutines)
+                implementation(libs.kommander.coroutines)
             }
         }
     }
