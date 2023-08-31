@@ -30,7 +30,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(projects.kollectionsInteroperable)
+                api(libs.kollections.interoperable)
                 api(kotlinx.atomicfu)
             }
         }

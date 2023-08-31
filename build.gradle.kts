@@ -25,6 +25,11 @@ tasks.dokkaHtmlMultiModule {
     includes.from("ReadMe.md")
 }
 
+allprojects {
+    group = "tz.co.asoft"
+    version = v
+}
+
 subprojects {
     apply(plugin = "org.jetbrains.dokka")
     apply(plugin = "com.vanniktech.maven.publish")
