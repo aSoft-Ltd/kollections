@@ -21,7 +21,7 @@ version = v
 tasks.dokkaHtmlMultiModule {
     moduleName.set("Kollections")
     outputDirectory.set(rootDir.resolve("docs"))
-    moduleVersion.set(asoft.versions.root.get())
+    moduleVersion.set(libs.versions.asoft.get())
     includes.from("ReadMe.md")
 }
 
