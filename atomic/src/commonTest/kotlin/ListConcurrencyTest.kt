@@ -1,4 +1,4 @@
-import expect.*
+import kommander.*
 import kollections.mutableAtomicListOf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.runTest
