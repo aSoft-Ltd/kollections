@@ -1,6 +1,8 @@
-@file:Suppress("ACTUAL_WITHOUT_EXPECT")
+@file:Suppress("ACTUAL_WITHOUT_EXPECT", "WRONG_JS_INTEROP_TYPE")
 
 package kollections
+
+import kotlinx.JsName
 
 @JsName("Array")
 actual external interface MutableFlock<T> : Flock<T> {

@@ -4,7 +4,7 @@
 package kollections
 
 import kotlin.collections.Collection as KCollection
-import kotlin.js.JsExport
+import kotlinx.JsExport
 
 interface FunctionalCollection<out E> : Iterable<E>, KCollection<E> {
     fun filter(predicate: (E) -> Boolean): List<E>

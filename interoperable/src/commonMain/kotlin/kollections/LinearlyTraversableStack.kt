@@ -2,6 +2,8 @@
 
 package kollections
 
+import kotlinx.JsExport
+
 interface LinearlyTraversableStack<E> : Stack<E>, LinearlyTraversable<E> {
     /**
      * Inserts an element into the stack cursor position and pops out all elements that came after the cursor position

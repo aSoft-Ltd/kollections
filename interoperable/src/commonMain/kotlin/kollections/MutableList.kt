@@ -5,7 +5,7 @@ package kollections
 import kollections.serializers.MutableListSerializer
 import kotlinx.serialization.Serializable
 import kotlin.collections.Collection
-import kotlin.js.JsExport
+import kotlinx.JsExport
 import kotlin.collections.MutableList as KMutableList
 import kotlin.js.JsName
 

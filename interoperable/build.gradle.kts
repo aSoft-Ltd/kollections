@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
+import org.jetbrains.kotlin.gradle.targets.js.npm.tasks.KotlinNpmInstallTask
+
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization")
@@ -9,7 +12,8 @@ description = "A collection library that is built with interoperability in mind"
 kotlin {
     if (Targeting.JVM) jvm { library() }
     if (Targeting.JS) js(IR) { library() }
-//    if (Targeting.WASM) wasm { library() }
+    if (Targeting.WASM) wasmJs { library() }
+    if (Targeting.WASM) wasmWasi { library() }
     val osxTargets = if (Targeting.OSX) osxTargets() else listOf()
     val ndkTargets = if (Targeting.NDK) ndkTargets() else listOf()
     val linuxTargets = if (Targeting.LINUX) linuxTargets() else listOf()
@@ -20,31 +24,60 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(kotlinx.serialization.core)
+                api(libs.kotlinx.exports)
             }
         }
 
         val commonTest by getting {
             dependencies {
-                api(kotlinx.serialization.json)
+                implementation(kotlinx.serialization.json)
                 implementation(libs.kommander.core)
             }
         }
 
-        val nonJsMain by creating {
+        val jsAndWasmJsMain by creating {
             dependsOn(commonMain)
         }
 
-        if (Targeting.JVM) {
-            val jvmMain by getting {
-                dependsOn(nonJsMain)
+        val nonJvmNonJsMain by creating {
+            dependsOn(commonMain)
+        }
+
+        if (Targeting.JS) {
+            val jsMain by getting {
+                dependsOn(jsAndWasmJsMain)
+            }
+        }
+
+        if (Targeting.WASM) {
+            val wasmJsMain by getting {
+                dependsOn(jsAndWasmJsMain)
+            }
+
+            val wasmWasiMain by getting {
+                dependsOn(nonJvmNonJsMain)
             }
         }
 
         nativeTargets.forEach {
             val main by it.compilations.getting {}
             main.defaultSourceSet {
-                dependsOn(nonJsMain)
+                dependsOn(nonJvmNonJsMain)
             }
         }
     }
+}
+
+rootProject.the<NodeJsRootExtension>().apply {
+    nodeVersion = npm.versions.node.version.get()
+    nodeDownloadBaseUrl = npm.versions.node.url.get()
+}
+
+rootProject.tasks.withType<KotlinNpmInstallTask>().configureEach {
+    args.add("--ignore-engines")
+}
+
+tasks.named("wasmJsTestTestDevelopmentExecutableCompileSync").configure {
+    mustRunAfter(tasks.named("jsBrowserTest"))
+    mustRunAfter(tasks.named("jsNodeTest"))
 }

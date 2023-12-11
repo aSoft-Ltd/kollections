@@ -2,6 +2,8 @@
 
 package kollections
 
+import kotlinx.JsExport
+
 interface LinearlyTraversable<out E> {
     fun current(): E?
     fun forward(): E?

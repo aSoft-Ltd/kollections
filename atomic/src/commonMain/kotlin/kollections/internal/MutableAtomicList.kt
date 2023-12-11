@@ -7,10 +7,12 @@ import kotlin.collections.MutableList as KMutableList
 import kollections.MutableList
 import kollections.toIMutableList
 
-internal class MutableAtomicList<E>(
-    private val atomic: AtomicRef<KMutableList<E>>
-) : AbstractCollection<E>(), MutableList<E> {
-    constructor(list: KMutableList<E>) : this(atomic(list))
+internal class MutableAtomicList<E>() : AbstractCollection<E>(), MutableList<E> {
+
+    private val atomic: AtomicRef<KMutableList<E>> = atomic(mutableListOf())
+    constructor(list: KMutableList<E>) : this() {
+        atomic.value = list
+    }
 
     override val size: Int get() = atomic.value.size
 

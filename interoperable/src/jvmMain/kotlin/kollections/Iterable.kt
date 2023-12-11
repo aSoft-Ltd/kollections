@@ -1,5 +1,3 @@
-@file:JsExport
-
 package kollections
 
 import kotlin.collections.Iterable as KIterable

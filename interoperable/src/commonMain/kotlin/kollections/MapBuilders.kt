@@ -6,7 +6,7 @@ package kollections
 import kollections.internal.MapEntryImpl
 import kollections.internal.MutableMapWrapper
 import kotlin.collections.mutableMapOf
-import kotlin.js.JsExport
+import kotlinx.JsExport
 import kotlin.js.JsName
 
 private fun <K, V> MapEntry<K, V>.toPair() = Pair(key, value)

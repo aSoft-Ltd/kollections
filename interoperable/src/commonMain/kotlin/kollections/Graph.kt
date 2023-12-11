@@ -3,7 +3,7 @@
 
 package kollections
 
-import kotlin.js.JsExport
+import kotlinx.JsExport
 
 interface Graph<out N, out E> : Collection<N> {
     fun isConnected(node1: @UnsafeVariance N, node2: @UnsafeVariance N): Boolean

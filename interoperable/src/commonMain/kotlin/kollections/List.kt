@@ -6,7 +6,7 @@ package kollections
 import kotlin.collections.List as KList
 import kollections.serializers.ListSerializer
 import kotlinx.serialization.Serializable
-import kotlin.js.JsExport
+import kotlinx.JsExport
 
 @Serializable(with = ListSerializer::class)
 interface List<out E> : Collection<E>, KList<E> {

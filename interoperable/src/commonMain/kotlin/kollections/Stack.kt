@@ -2,6 +2,8 @@
 
 package kollections
 
+import kotlinx.JsExport
+
 interface Stack<E> : Collection<E> {
     fun top(): E?
     fun push(element: E)

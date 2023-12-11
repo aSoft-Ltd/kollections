@@ -6,7 +6,7 @@ package kollections
 import kotlin.collections.mutableSetOf as kMutableSetOf
 import kollections.internal.MutableSetWrapper
 import kollections.internal.EmptySet
-import kotlin.js.JsExport
+import kotlinx.JsExport
 import kotlin.js.JsName
 
 @JsName("emptyMutableSet")

@@ -3,7 +3,7 @@
 package kollections
 
 import kotlin.collections.Collection as KCollection
-import kotlin.js.JsExport
+import kotlinx.JsExport
 
 interface CollectionLike<out E> : Iterable<E>, KCollection<E> {
 

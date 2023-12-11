@@ -4,7 +4,7 @@
 package kollections
 
 import kotlin.collections.MutableMap as KMutableMap
-import kotlin.js.JsExport
+import kotlinx.JsExport
 
 interface MutableMapLike<K, V> : MapLike<K, V>, KMutableMap<K, V> {
     override val size: Int

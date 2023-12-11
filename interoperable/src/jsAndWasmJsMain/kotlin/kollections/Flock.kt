@@ -1,10 +1,11 @@
-@file:Suppress("EXTENSION_SHADOWED_BY_MEMBER")
+@file:Suppress("EXTENSION_SHADOWED_BY_MEMBER", "WRONG_JS_INTEROP_TYPE")
 
 package kollections
 
+import kotlinx.JsName
+
 @JsName("Array")
 actual external interface Flock<out T> {
-
     val length: Int
     fun at(index: Int): T?
 }

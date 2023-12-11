@@ -3,7 +3,7 @@
 package kollections
 
 import kotlin.collections.MutableCollection as KMutableCollection
-import kotlin.js.JsExport
+import kotlinx.JsExport
 
 interface MutableCollectionLike<E> : KMutableCollection<E>, CollectionLike<E> {
 

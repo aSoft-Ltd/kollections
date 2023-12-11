@@ -2,6 +2,6 @@
 
 package kollections
 
-import kotlin.js.JsExport
+import kotlinx.JsExport
 
 interface MutableCollection<E> : MutableCollectionLike<E>, Collection<E>

@@ -1,3 +1,5 @@
+@file:Suppress("NON_EXTERNAL_TYPE_EXTENDS_EXTERNAL_TYPE")
+
 package kollections
 
 expect interface MutableFlock<T> : Flock<T>

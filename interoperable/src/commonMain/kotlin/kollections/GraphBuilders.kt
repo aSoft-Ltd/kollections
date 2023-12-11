@@ -5,7 +5,7 @@ package kollections
 
 import kollections.internal.DirectedGraphImpl
 import kollections.internal.UndirectedGraphImpl
-import kotlin.js.JsExport
+import kotlinx.JsExport
 import kotlin.js.JsName
 
 @JsName("undirectedGraph")

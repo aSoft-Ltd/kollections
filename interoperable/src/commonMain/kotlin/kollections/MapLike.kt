@@ -3,7 +3,7 @@
 package kollections
 
 import kotlin.collections.Map as KMap
-import kotlin.js.JsExport
+import kotlinx.JsExport
 
 interface MapLike<K, out V> : KMap<K, V>, CollectionLike<MapEntry<K, V>> {
     override val size: Int

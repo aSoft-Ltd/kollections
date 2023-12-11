@@ -4,7 +4,7 @@ package kollections
 
 import kollections.serializers.MutableSetSerializer
 import kotlinx.serialization.Serializable
-import kotlin.js.JsExport
+import kotlinx.JsExport
 import kotlin.collections.MutableSet as KMutableSet
 
 @Serializable(with = MutableSetSerializer::class)

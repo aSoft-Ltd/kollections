@@ -6,7 +6,7 @@ package kollections
 import kotlin.collections.mutableListOf as kMutableListOf
 import kollections.internal.MutableListWrapper
 import kollections.internal.EmptyList
-import kotlin.js.JsExport
+import kotlinx.JsExport
 import kotlin.js.JsName
 
 @JsName("emptyMutableList")

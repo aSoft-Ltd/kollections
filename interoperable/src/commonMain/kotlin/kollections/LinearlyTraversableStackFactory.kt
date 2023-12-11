@@ -4,5 +4,6 @@
 package kollections
 
 import kollections.internal.LinearlyTraversableStackImpl
+import kotlinx.JsExport
 
 inline fun <E> traversableStackOf(): LinearlyTraversableStack<E> = LinearlyTraversableStackImpl()

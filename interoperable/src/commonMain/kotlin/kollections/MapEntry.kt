@@ -3,7 +3,7 @@
 package kollections
 
 import kotlin.collections.Map as KMap
-import kotlin.js.JsExport
+import kotlinx.JsExport
 
 interface MapEntry<out K, out V> : KMap.Entry<K, V> {
     val k: K
