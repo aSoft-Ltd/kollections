@@ -9,3 +9,5 @@ expect operator fun <T> List<T>.get(index: Int): T
 
 
 expect operator fun <T> List<T>.iterator(): Iterator<T>
+
+expect inline fun <reified T> List<T>.toTypedArray() : Array<T>

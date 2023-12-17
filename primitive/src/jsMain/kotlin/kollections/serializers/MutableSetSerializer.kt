@@ -2,27 +2,27 @@
 
 package kollections.serializers
 
-import kollections.List
-import kollections.intoList
-import kollections.toKList
+import kollections.MutableSet
+import kollections.intoSet
+import kollections.toKSet
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
-import kotlinx.serialization.builtins.ListSerializer
+import kotlinx.serialization.builtins.SetSerializer
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.StructureKind
 import kotlinx.serialization.descriptors.buildSerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
-class ListSerializer<T>(serializer: KSerializer<T>) : KSerializer<List<T>> {
+class MutableSetSerializer<T>(serializer: KSerializer<T>) : KSerializer<MutableSet<T>> {
     override val descriptor: SerialDescriptor = buildSerialDescriptor(
-        serialName = "kollections.List",
+        serialName = "kollections.MutableSet",
         kind = StructureKind.LIST,
     )
 
-    private val surrogate = ListSerializer(serializer)
+    private val surrogate = SetSerializer(serializer)
 
-    override fun deserialize(decoder: Decoder): List<T> = surrogate.deserialize(decoder).intoList()
+    override fun deserialize(decoder: Decoder): MutableSet<T> = surrogate.deserialize(decoder).intoSet()
 
-    override fun serialize(encoder: Encoder, value: List<T>) = surrogate.serialize(encoder, value.toKList())
+    override fun serialize(encoder: Encoder, value: MutableSet<T>) = surrogate.serialize(encoder, value.toKSet())
 }

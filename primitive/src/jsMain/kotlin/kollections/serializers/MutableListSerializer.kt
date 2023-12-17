@@ -14,15 +14,15 @@ import kotlinx.serialization.descriptors.buildSerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
-actual class MutableListSerializer<T> actual constructor(serializer: KSerializer<T>) : KSerializer<MutableList<T>> {
-    actual override val descriptor: SerialDescriptor = buildSerialDescriptor(
+class MutableListSerializer<T>(serializer: KSerializer<T>) : KSerializer<MutableList<T>> {
+    override val descriptor: SerialDescriptor = buildSerialDescriptor(
         serialName = "kollections.MutableList",
         kind = StructureKind.LIST,
     )
 
     private val surrogate = ListSerializer(serializer)
 
-    actual override fun deserialize(decoder: Decoder): MutableList<T> = surrogate.deserialize(decoder).intoList()
+    override fun deserialize(decoder: Decoder): MutableList<T> = surrogate.deserialize(decoder).intoList()
 
-    actual override fun serialize(encoder: Encoder, value: MutableList<T>) = surrogate.serialize(encoder, value.toKList())
+    override fun serialize(encoder: Encoder, value: MutableList<T>) = surrogate.serialize(encoder, value.toKList())
 }

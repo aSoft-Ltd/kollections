@@ -17,4 +17,6 @@ actual val <T> List<T>.size get() = length
 
 actual operator fun <T> List<T>.get(index: Int): T = at(index) ?: throw IndexOutOfBoundsException()
 
-actual operator fun <T> List<T>.iterator(): Iterator<T> = (this as Array<T>).iterator()
+actual operator fun <T> List<T>.iterator(): Iterator<T> = unsafeCast<Array<T>>().iterator()
+
+actual inline fun <reified T> List<T>.toTypedArray() = unsafeCast<Array<T>>()

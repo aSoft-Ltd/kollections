@@ -5,20 +5,20 @@ import kotlin.test.Test
 
 class ListTest {
     @Test
-    fun should_be_able_to_create_an_empty_flock() {
+    fun should_be_able_to_create_an_empty_list() {
         val list = listOf<Int>()
         expect(list.size).toBe(0)
     }
 
     @Test
-    fun should_be_able_to_add_items_to_a_flock() {
+    fun should_be_able_to_add_items_to_a_list() {
         val list = mutableListOf<Int>()
         repeat(10) { list.add(10) }
         expect(list.size).toBe(10)
     }
 
     @Test
-    fun should_be_able_to_create_a_flock_with_items() {
+    fun should_be_able_to_create_a_list_with_items() {
         val list1 = listOf(1, 2, 3, 4)
         expect(list1.size).toBe(4)
 
@@ -27,7 +27,7 @@ class ListTest {
     }
 
     @Test
-    fun should_be_able_to_iterate_a_flock() {
+    fun should_be_able_to_iterate_a_list() {
         for (num in listOf(1, 2, 3, 4)) {
             println(num)
         }

@@ -2,6 +2,8 @@
 
 package kollections
 
+import kotlin.collections.toTypedArray as kToTypedArray
+
 actual typealias List<T> = kotlin.collections.List<T>
 
 actual val <T> List<T>.size get() = size
@@ -9,3 +11,5 @@ actual val <T> List<T>.size get() = size
 actual operator fun <T> List<T>.get(index: Int): T = get(index)
 
 actual operator fun <T> List<T>.iterator(): Iterator<T> = iterator()
+
+actual inline fun <reified T> List<T>.toTypedArray() : Array<T> = kToTypedArray()

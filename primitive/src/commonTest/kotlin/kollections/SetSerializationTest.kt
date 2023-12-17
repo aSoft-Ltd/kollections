@@ -6,27 +6,27 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlin.test.Test
 
-class ListSerializationTest {
+class SetSerializationTest {
 
     private val codec = Json {  }
 
     private interface Preserve {
-        val contents: List<String>
+        val contents: Set<String>
     }
     @Serializable
-    private data class Zoo(override val contents: List<String>) : Preserve
+    private data class Zoo(override val contents: Set<String>) : Preserve
     @Serializable
-    private data class MutableZoo(override val contents: MutableList<String>) : Preserve
+    private data class MutableZoo(override val contents: MutableSet<String>) : Preserve
 
     @Test
-    fun should_be_able_to_serialize_a_mutable_list() {
-        val animals = MutableZoo(mutableListOf("Lion","Tiger"))
+    fun should_be_able_to_serialize_a_mutable_set() {
+        val animals = MutableZoo(mutableSetOf("Lion","Tiger"))
         expect(codec.encodeToString(animals)).toBe("""{"contents":["Lion","Tiger"]}""")
     }
 
     @Test
-    fun should_be_able_to_serialize_a_list() {
-        val animals = Zoo(listOf("Lion","Tiger"))
+    fun should_be_able_to_serialize_a_set() {
+        val animals = Zoo(setOf("Lion","Tiger"))
         expect(codec.encodeToString(animals)).toBe("""{"contents":["Lion","Tiger"]}""")
     }
 }
