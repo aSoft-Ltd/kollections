@@ -14,11 +14,15 @@ import kotlinx.serialization.Serializable
 actual external interface List<out T> : Collection<T> {
     val length: Int
     fun at(index: Int): T?
+
+    fun indexOf(item: @UnsafeVariance T): Int
 }
 
 actual val <T> List<T>.size get() = length
 
 actual operator fun <T> List<T>.get(index: Int): T = at(index) ?: throw IndexOutOfBoundsException()
+
+actual inline fun <T> List<T>.indexOf(item: T) = indexOf(item)
 
 actual operator fun <T> List<T>.iterator(): Iterator<T> = unsafeCast<Array<T>>().iterator()
 

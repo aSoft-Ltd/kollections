@@ -13,4 +13,4 @@ actual fun <T> Set<T>.toList() : List<T> = kToList()
 
 actual operator fun <T> Set<T>.iterator(): Iterator<T> = iterator()
 
-actual inline fun <reified T> Set<T>.toTypedArray() = kToTypedArray()
+actual inline fun <reified T> Set<T>.toTypedArray() : Array<T> = kToTypedArray()

@@ -5,6 +5,7 @@ package kollections
 import kotlin.collections.Set as KSet
 import kotlin.collections.buildSet as kBuildSet
 
+actual inline fun <T> emptySet(): Set<T> = js("new Set()")
 actual inline fun <T> setOf(): Set<T> = js("new Set()")
 
 actual inline fun <T> setOf(vararg items: T): Set<T> = js("new Set(items)")

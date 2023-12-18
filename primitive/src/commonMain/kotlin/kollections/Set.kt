@@ -1,6 +1,6 @@
 package kollections
 
-expect interface Set<out T>
+expect interface Set<out T> : Collection<T>
 
 
 expect val <T> Set<T>.size: Int

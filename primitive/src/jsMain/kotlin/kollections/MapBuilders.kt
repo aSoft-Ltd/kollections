@@ -16,6 +16,8 @@ actual inline fun <K, V> mutableMapOf(): MutableMap<K, V> = js("new Map()")
 
 actual inline fun <K, V> mutableMapOf(vararg entries: Pair<K, V>): MutableMap<K, V> = newMap(*entries)
 
+actual inline fun <K, V> Map<K, V>.toMutableMap(): MutableMap<K, V> = unsafeCast<MutableMap<K,V>>()
+
 //expect inline fun <K, V> mutableMapOf(vararg items: T) : MutableMap<K, V>
 
 //expect inline fun <K, V> KMap<K, V>.toMap(): Map<K, V>

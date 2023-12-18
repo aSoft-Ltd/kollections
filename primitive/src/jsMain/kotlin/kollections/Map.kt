@@ -5,11 +5,26 @@ package kollections
 import kotlinx.JsName
 
 @JsName("Map")
-actual external interface Map<K,out V> {
+actual external interface Map<K, out V> {
     val size: Int
+
     fun get(key: K): V?
+
+    fun entries(): Iterable<MapEntry<K, V>>
+
+    fun keys(): Iterable<K>
+
+    fun values(): Iterable<V>
+
+    fun forEach(fn: (value: V, key: K) -> Unit)
 }
 
-actual val <K,V> Map<K,V>.size get() = size
+actual inline val <K, V> Map<K, V>.size get() = size
+actual inline val <K, V> Map<K, V>.keys: Set<K> get() = keys().toSet()
+actual inline val <K, V> Map<K, V>.values: Collection<V> get() = values().toList()
 
-actual operator fun <K, V> Map<K, V>.get(key: K): V? = get(key)
+actual inline val <K, V> Map<K, V>.entries get() = entries().toSet()
+
+actual inline operator fun <K, V> Map<K, V>.get(key: K): V? = get(key)
+
+actual inline fun <K, V> Map<K, V>.getValue(key: K): V = get(key) ?: throw NoSuchElementException("Element was with key $key was not found")

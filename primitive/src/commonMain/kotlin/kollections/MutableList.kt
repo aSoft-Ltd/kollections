@@ -10,4 +10,16 @@ expect fun <T> MutableList<T>.addAll(vararg items: T)
 
 expect fun <T> MutableList<T>.addAll(items: List<T>)
 
-expect fun <T> MutableList<T>.addAll(items: Collection<T>)
+expect fun <T> MutableList<T>.addAll(items: Iterable<T>)
+
+expect fun <T> MutableList<T>.addAll(items: Array<T>)
+
+expect operator fun <T> MutableList<T>.plus(item: T)
+
+expect operator fun <T> MutableList<T>.plus(items: Iterable<T>)
+
+expect fun <T> MutableList<T>.remove(item: T) : T?
+
+expect fun <T> MutableList<T>.removeAll(items: Iterable<T>)
+
+expect operator fun <T> MutableList<T>.minus(item: T)

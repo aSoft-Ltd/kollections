@@ -4,6 +4,7 @@ package kollections
 
 import kotlin.collections.List
 
+actual inline fun <T> emptyList(): List<T> = kotlin.collections.emptyList<T>() as List<T>
 actual inline fun <T> listOf(): List<T> = kotlin.collections.listOf<T>() as List<T>
 
 actual inline fun <T> listOf(vararg items: T): List<T> = kotlin.collections.listOf(*items) as List<T>

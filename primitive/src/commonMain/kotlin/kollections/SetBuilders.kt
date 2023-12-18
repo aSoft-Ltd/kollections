@@ -2,6 +2,9 @@ package kollections
 
 import kotlin.collections.Set as KSet
 
+
+expect inline fun <T> emptySet() : Set<T>
+
 expect inline fun <T> setOf() : Set<T>
 
 expect inline fun <T> setOf(vararg items: T) : Set<T>

@@ -1,3 +1,3 @@
 package kollections
 
-expect interface Collection<out T>
+expect interface Collection<out T> : Iterable<T>

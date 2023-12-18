@@ -4,6 +4,8 @@ package kollections
 
 import kotlin.collections.List as KList
 
+actual inline fun <T> emptyList(): List<T> = arrayOf<T>().unsafeCast<List<T>>() // js("[]")
+
 actual inline fun <T> listOf(): List<T> = arrayOf<T>().unsafeCast<List<T>>() // js("[]")
 
 actual inline fun <T> listOf(vararg items: T): List<T> = items.unsafeCast<List<T>>()
