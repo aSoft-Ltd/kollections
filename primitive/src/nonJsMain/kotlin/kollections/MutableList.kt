@@ -18,6 +18,6 @@ actual inline fun <T> MutableList<T>.addAll(items: List<T>) {
     kAddAll(items)
 }
 
-actual inline fun <T> MutableList<T>.addAll(iterable: Iterable<T>) {
-    kAddAll(iterable)
+actual inline fun <T> MutableList<T>.addAll(items: Collection<T>) {
+    kAddAll(items)
 }

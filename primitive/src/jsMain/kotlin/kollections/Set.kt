@@ -1,4 +1,7 @@
-@file:Suppress("ACTUAL_CLASSIFIER_MUST_HAVE_THE_SAME_MEMBERS_AS_NON_FINAL_EXPECT_CLASSIFIER_WARNING")
+@file:Suppress(
+    "ACTUAL_CLASSIFIER_MUST_HAVE_THE_SAME_MEMBERS_AS_NON_FINAL_EXPECT_CLASSIFIER_WARNING",
+    "ACTUAL_CLASSIFIER_MUST_HAVE_THE_SAME_SUPERTYPES_AS_NON_FINAL_EXPECT_CLASSIFIER_WARNING"
+)
 
 package kollections
 
@@ -8,9 +11,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable(SetSerializer::class)
 @JsName("Set")
-actual external interface Set<out T> {
+actual external interface Set<out T> : Collection<T> {
     val size: Int
-    fun forEach(looper: (item: T) -> Unit)
 }
 
 actual val <T> Set<T>.size get() = size

@@ -10,4 +10,4 @@ expect fun <T> MutableList<T>.addAll(vararg items: T)
 
 expect fun <T> MutableList<T>.addAll(items: List<T>)
 
-expect fun <T> MutableList<T>.addAll(iterable: Iterable<T>)
+expect fun <T> MutableList<T>.addAll(items: Collection<T>)

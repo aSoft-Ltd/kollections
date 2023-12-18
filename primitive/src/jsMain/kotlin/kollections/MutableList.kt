@@ -23,6 +23,6 @@ actual inline fun <T> MutableList<T>.addAll(items: List<T>) {
     for (item in items) push(item)
 }
 
-actual inline fun <T> MutableList<T>.addAll(iterable: Iterable<T>) {
-    for (item in iterable) push(item)
+actual inline fun <T> MutableList<T>.addAll(items: Collection<T>) {
+    items.forEach { push(it) }
 }

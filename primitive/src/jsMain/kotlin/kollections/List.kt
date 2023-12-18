@@ -1,4 +1,7 @@
-@file:Suppress("ACTUAL_CLASSIFIER_MUST_HAVE_THE_SAME_MEMBERS_AS_NON_FINAL_EXPECT_CLASSIFIER_WARNING")
+@file:Suppress(
+    "ACTUAL_CLASSIFIER_MUST_HAVE_THE_SAME_MEMBERS_AS_NON_FINAL_EXPECT_CLASSIFIER_WARNING",
+    "ACTUAL_CLASSIFIER_MUST_HAVE_THE_SAME_SUPERTYPES_AS_NON_FINAL_EXPECT_CLASSIFIER_WARNING"
+)
 
 package kollections
 
@@ -8,7 +11,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable(ListSerializer::class)
 @JsName("Array")
-actual external interface List<out T> {
+actual external interface List<out T> : Collection<T> {
     val length: Int
     fun at(index: Int): T?
 }
