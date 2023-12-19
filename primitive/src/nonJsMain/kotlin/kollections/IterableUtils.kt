@@ -1,14 +1,18 @@
 package kollections
 
+import kollections.Iterable
 import kotlin.collections.find as kFind
 import kotlin.collections.firstOrNull as kFirstOrNull
 import kotlin.collections.forEach as kForEach
 import kotlin.collections.forEachIndexed as kForEachIndexed
 import kotlin.collections.associate as kAssociate
 import kotlin.collections.toList as kToList
+import kotlin.collections.toMutableList as kToMutableList
 import kotlin.collections.toSet as kToSet
+import kotlin.collections.toMutableSet as kToMutableSet
 import kotlin.collections.joinToString as kJoinToString
 import kotlin.collections.filterIsInstance as kFilterIsInstance
+import kotlin.collections.reversed as kReversed
 
 actual inline fun <T> Iterable<T>.forEachIndexed(block: (index: Int, item: T) -> Unit) = kForEachIndexed(block)
 actual inline fun <T> Iterable<T>.forEach(block: (item: T) -> Unit) = kForEach(block)
@@ -27,5 +31,11 @@ actual fun <T> Iterable<T>.joinToString(
 
 actual inline fun <reified R> Iterable<*>.filterIsInstance(): List<R> = kFilterIsInstance<R>()
 
-actual fun <T> Iterable<T>.toList(): List<T> = kToList()
-actual fun <T> Iterable<T>.toSet(): Set<T> = kToSet()
+actual inline fun <T> Iterable<T>.toList(): List<T> = kToList()
+
+actual inline fun <T> Iterable<T>.toMutableList(): MutableList<T> = kToMutableList()
+
+actual inline fun <T> Iterable<T>.toSet(): Set<T> = kToSet()
+actual inline fun <T> Iterable<T>.toMutableSet(): MutableSet<T> = kToMutableSet()
+
+actual inline fun <T> Iterable<T>.reversed() : List<T> = kReversed()

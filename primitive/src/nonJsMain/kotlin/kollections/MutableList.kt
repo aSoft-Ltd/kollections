@@ -2,7 +2,6 @@
 
 package kollections
 
-import kotlin.collections.removeAll
 import kotlin.jvm.JvmName
 import kotlin.collections.addAll as kAddAll
 import kotlin.collections.plus as kPlus

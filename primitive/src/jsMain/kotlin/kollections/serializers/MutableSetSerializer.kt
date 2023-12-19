@@ -3,7 +3,7 @@
 package kollections.serializers
 
 import kollections.MutableSet
-import kollections.intoSet
+import kollections.toMutableSet
 import kollections.toKSet
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
@@ -22,7 +22,7 @@ class MutableSetSerializer<T>(serializer: KSerializer<T>) : KSerializer<MutableS
 
     private val surrogate = SetSerializer(serializer)
 
-    override fun deserialize(decoder: Decoder): MutableSet<T> = surrogate.deserialize(decoder).intoSet()
+    override fun deserialize(decoder: Decoder): MutableSet<T> = surrogate.deserialize(decoder).toMutableSet()
 
     override fun serialize(encoder: Encoder, value: MutableSet<T>) = surrogate.serialize(encoder, value.toKSet())
 }

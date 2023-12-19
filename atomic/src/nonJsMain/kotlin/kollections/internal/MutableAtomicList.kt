@@ -1,18 +1,14 @@
 package kollections.internal
 
-import kotlinx.atomicfu.AtomicRef
 import kotlinx.atomicfu.atomic
-import kotlin.collections.Collection as KCollection
 import kotlin.collections.MutableList as KMutableList
-import kollections.MutableList
-import kollections.toIMutableList
 
-internal class MutableAtomicList<E>() : AbstractCollection<E>(), MutableList<E> {
+@PublishedApi
+internal class MutableAtomicList<E>(
+    value: KMutableList<E>
+) : AbstractCollection<E>(), KMutableList<E> {
 
-    private val atomic: AtomicRef<KMutableList<E>> = atomic(mutableListOf())
-    constructor(list: KMutableList<E>) : this() {
-        atomic.value = list
-    }
+    private val atomic = atomic(value)
 
     override val size: Int get() = atomic.value.size
 
@@ -35,11 +31,11 @@ internal class MutableAtomicList<E>() : AbstractCollection<E>(), MutableList<E> 
 
     override fun set(index: Int, element: E): E = doAction { it.set(index, element) }
 
-    override fun subList(fromIndex: Int, toIndex: Int): MutableList<E> = atomic.value.subList(fromIndex, toIndex).toIMutableList()
+    override fun subList(fromIndex: Int, toIndex: Int): KMutableList<E> = atomic.value.subList(fromIndex, toIndex)
 
     override fun add(index: Int, element: E) = doAction { it.add(index, element) }
 
-    override fun addAll(index: Int, elements: KCollection<E>): Boolean = doAction { it.addAll(index, elements) }
+    override fun addAll(index: Int, elements: Collection<E>): Boolean = doAction { it.addAll(index, elements) }
 
     override fun removeAt(index: Int): E = doAction { it.removeAt(index) }
 
@@ -47,7 +43,7 @@ internal class MutableAtomicList<E>() : AbstractCollection<E>(), MutableList<E> 
 
     override fun contains(element: E): Boolean = atomic.value.contains(element)
 
-    override fun containsAll(elements: KCollection<E>): Boolean = atomic.value.containsAll(elements)
+    override fun containsAll(elements: Collection<E>): Boolean = atomic.value.containsAll(elements)
 
     override fun isEmpty(): Boolean = atomic.value.isEmpty()
 
@@ -55,11 +51,11 @@ internal class MutableAtomicList<E>() : AbstractCollection<E>(), MutableList<E> 
 
     override fun add(element: E): Boolean = doAction { it.add(element) }
 
-    override fun addAll(elements: KCollection<E>): Boolean = doAction { it.addAll(elements) }
+    override fun addAll(elements: Collection<E>): Boolean = doAction { it.addAll(elements) }
 
     override fun remove(element: E): Boolean = doAction { it.remove(element) }
 
-    override fun removeAll(elements: KCollection<E>): Boolean = doAction { it.removeAll(elements) }
+    override fun removeAll(elements: Collection<E>): Boolean = doAction { it.removeAll(elements) }
 
-    override fun retainAll(elements: KCollection<E>): Boolean = doAction { it.retainAll(elements) }
+    override fun retainAll(elements: Collection<E>): Boolean = doAction { it.retainAll(elements) }
 }

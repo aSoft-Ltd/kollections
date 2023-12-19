@@ -18,4 +18,4 @@ actual inline fun <T> KList<T>.toList(): List<T> = buildList { for (item in this
 
 fun <T> List<T>.toKList(): KList<T> = kotlin.collections.listOf(*unsafeCast<Array<T>>())
 
-fun <T> KList<T>.intoList(): MutableList<T> = toList().unsafeCast<MutableList<T>>()
+fun <T> KList<T>.toMutableList(): MutableList<T> = toList().unsafeCast<MutableList<T>>()

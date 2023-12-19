@@ -22,4 +22,9 @@ expect inline fun <reified R> Iterable<*>.filterIsInstance(): List<R>
 
 expect fun <T> Iterable<T>.toList(): List<T>
 
+expect fun <T> Iterable<T>.toMutableList(): MutableList<T>
+
 expect fun <T> Iterable<T>.toSet(): Set<T>
+expect fun <T> Iterable<T>.toMutableSet(): MutableSet<T>
+
+expect fun <T> Iterable<T>.reversed(): List<T>

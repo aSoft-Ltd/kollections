@@ -16,6 +16,7 @@ actual external interface Map<K, out V> {
 
     fun values(): Iterable<V>
 
+    fun has(key: K) : Boolean
     fun forEach(fn: (value: V, key: K) -> Unit)
 }
 

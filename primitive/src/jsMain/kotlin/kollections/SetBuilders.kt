@@ -18,4 +18,4 @@ actual inline fun <T> KSet<T>.toSet(): Set<T> = buildSet { for (item in this@toS
 
 fun <T> Set<T>.toKSet(): KSet<T> = kBuildSet(size) { this@toKSet.forEach { add(it) } }
 
-fun <T> KSet<T>.intoSet(): MutableSet<T> = toSet().unsafeCast<MutableSet<T>>()
+fun <T> KSet<T>.toMutableSet(): MutableSet<T> = toSet().unsafeCast<MutableSet<T>>()

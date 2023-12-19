@@ -30,16 +30,24 @@ actual fun <T> Iterable<T>.joinToString(
 ): String = unsafeCast<Array<T>>().joinToString(separator, prefix, postfix, limit, truncated, transform)
 
 actual inline fun <reified R> Iterable<*>.filterIsInstance(): List<R> = buildList {
-    forEach { item: Any? -> if (item is R) push(item) }
+    this@filterIsInstance.forEach { if (it is R) push(it) }
 }
 
-actual fun <T> Iterable<T>.toList(): List<T> = buildList { forEach { push(it) } }
+actual fun <T> Iterable<T>.toMutableList(): MutableList<T> = buildMutableList {
+    this@toMutableList.forEach { push(it) }
+}
+actual inline fun <T> Iterable<T>.toList(): List<T> = toMutableList()
 
-actual fun <T> Iterable<T>.toSet(): Set<T> = buildSet { forEach { add(it) } }
+actual fun <T> Iterable<T>.toMutableSet(): MutableSet<T> = buildMutableSet {
+    this@toMutableSet.forEach { add(it) }
+}
+actual inline fun <T> Iterable<T>.toSet(): Set<T> = toMutableSet()
 
 actual fun <T, K, V> Iterable<T>.associate(fn: (item: T) -> Pair<K, V>): Map<K, V> = buildMap {
-    forEach { item: T ->
-        val (key, value) = fn(item)
+    this@associate.forEach {
+        val (key, value) = fn(it)
         set(key, value)
     }
 }
+
+actual fun <T> Iterable<T>.reversed() : List<T> = toList().unsafeCast<Array<T>>().reversed().unsafeCast<List<T>>()

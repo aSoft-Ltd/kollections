@@ -3,7 +3,7 @@
 package kollections.serializers
 
 import kollections.List
-import kollections.intoList
+import kollections.toMutableList
 import kollections.toKList
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
@@ -22,7 +22,7 @@ class ListSerializer<T>(serializer: KSerializer<T>) : KSerializer<List<T>> {
 
     private val surrogate = ListSerializer(serializer)
 
-    override fun deserialize(decoder: Decoder): List<T> = surrogate.deserialize(decoder).intoList()
+    override fun deserialize(decoder: Decoder): List<T> = surrogate.deserialize(decoder).toMutableList()
 
     override fun serialize(encoder: Encoder, value: List<T>) = surrogate.serialize(encoder, value.toKList())
 }
