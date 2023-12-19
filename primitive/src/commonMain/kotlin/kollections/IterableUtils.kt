@@ -6,6 +6,8 @@ expect fun <T> Iterable<T>.forEachIndexed(block: (index: Int, item: T) -> Unit)
 expect fun <T> Iterable<T>.firstOrNull(predicate: (item: T) -> Boolean): T?
 expect fun <T> Iterable<T>.find(predicate: (item: T) -> Boolean): T?
 
+expect fun <T> Iterable<T>.all(predicate: (item: T) -> Boolean): Boolean
+
 
 expect fun <T> Iterable<T>.joinToString(
     separator: CharSequence = ", ",

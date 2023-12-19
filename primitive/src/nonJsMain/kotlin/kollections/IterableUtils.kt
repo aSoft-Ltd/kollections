@@ -13,12 +13,15 @@ import kotlin.collections.toMutableSet as kToMutableSet
 import kotlin.collections.joinToString as kJoinToString
 import kotlin.collections.filterIsInstance as kFilterIsInstance
 import kotlin.collections.reversed as kReversed
+import kotlin.collections.all as kAll
 
 actual inline fun <T> Iterable<T>.forEachIndexed(block: (index: Int, item: T) -> Unit) = kForEachIndexed(block)
 actual inline fun <T> Iterable<T>.forEach(block: (item: T) -> Unit) = kForEach(block)
 actual inline fun <T> Iterable<T>.firstOrNull(predicate: (item: T) -> Boolean): T? = kFirstOrNull(predicate)
 actual inline fun <T> Iterable<T>.find(predicate: (item: T) -> Boolean): T? = kFind(predicate)
 actual fun <T, K, V> Iterable<T>.associate(fn: (item: T) -> Pair<K, V>): Map<K, V> = kAssociate(fn)
+
+actual fun <T> Iterable<T>.all(predicate: (item: T) -> Boolean): Boolean = kAll(predicate)
 
 actual fun <T> Iterable<T>.joinToString(
     separator: CharSequence,

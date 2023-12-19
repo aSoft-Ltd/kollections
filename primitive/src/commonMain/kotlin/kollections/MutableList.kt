@@ -6,6 +6,8 @@ expect interface MutableList<T> : List<T>
 
 expect fun <T> MutableList<T>.add(item: T)
 
+expect fun <T> MutableList<T>.add(index: Int, item: T)
+
 expect fun <T> MutableList<T>.addAll(vararg items: T)
 
 expect fun <T> MutableList<T>.addAll(items: List<T>)
@@ -18,8 +20,10 @@ expect operator fun <T> MutableList<T>.plus(item: T)
 
 expect operator fun <T> MutableList<T>.plus(items: Iterable<T>)
 
-expect fun <T> MutableList<T>.remove(item: T) : T?
+expect fun <T> MutableList<T>.remove(item: T): T?
 
 expect fun <T> MutableList<T>.removeAll(items: Iterable<T>)
+
+expect fun <T> MutableList<T>.clear()
 
 expect operator fun <T> MutableList<T>.minus(item: T)

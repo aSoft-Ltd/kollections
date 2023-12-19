@@ -47,4 +47,19 @@ class ListTest {
             println(item)
         }
     }
+
+    @Test
+    fun should_be_able_to_loop_through_a_mutable_list() {
+        mutableListOf("A","B","C","D").forEach {
+            println(it)
+        }
+    }
+
+    @Test
+    fun should_be_able_to_loop_through_an_empty_mutable_list() {
+        println("Empty one")
+        mutableListOf<String>().forEach {
+            println(it)
+        }
+    }
 }

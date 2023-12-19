@@ -2,6 +2,7 @@
 
 package kollections
 
+import kollections.MutableList
 import kotlin.jvm.JvmName
 import kotlin.collections.addAll as kAddAll
 import kotlin.collections.plus as kPlus
@@ -12,6 +13,10 @@ actual typealias MutableList<T> = kotlin.collections.MutableList<T>
 
 actual inline fun <T> MutableList<T>.add(item: T) {
     add(element = item)
+}
+
+actual inline fun <T> MutableList<T>.add(index: Int, item: T) {
+    add(index, item)
 }
 
 actual inline fun <T> MutableList<T>.addAll(vararg items: T) {
@@ -48,3 +53,5 @@ actual inline fun <T> MutableList<T>.removeAll(items: Iterable<T>) {
 actual inline operator fun <T> MutableList<T>.minus(item: T) {
     kMinus(item)
 }
+
+actual inline fun <T> MutableList<T>.clear() = clear()

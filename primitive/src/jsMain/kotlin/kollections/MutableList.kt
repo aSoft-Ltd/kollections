@@ -9,12 +9,17 @@ import kotlinx.serialization.Serializable
 @Serializable(MutableListSerializer::class)
 @JsName("Array")
 actual external interface MutableList<T> : List<T> {
+    override var length: Int
     fun push(item: T): Int
-    fun splice(index: Int, count: Int)
+    fun splice(index: Int, deleteCount: Int, vararg items: T)
 }
 
 actual inline fun <T> MutableList<T>.add(item: T) {
     push(item)
+}
+
+actual inline fun <T> MutableList<T>.add(index: Int, item: T) {
+    splice(index, 0, item)
 }
 
 actual inline fun <T> MutableList<T>.addAll(vararg items: T) {
@@ -44,7 +49,7 @@ actual inline operator fun <T> MutableList<T>.plus(items: Iterable<T>) {
 actual fun <T> MutableList<T>.remove(item: T): T? {
     val idx = indexOf(item)
     if (idx <= 0) return null
-    splice(idx,1)
+    splice(idx, 1)
     return item
 }
 
@@ -54,4 +59,8 @@ actual inline fun <T> MutableList<T>.removeAll(items: Iterable<T>) {
 
 actual inline operator fun <T> MutableList<T>.minus(item: T) {
     remove(item)
+}
+
+actual inline fun <T> MutableList<T>.clear() {
+    length = 0
 }

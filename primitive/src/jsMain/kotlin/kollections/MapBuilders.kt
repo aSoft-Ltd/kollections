@@ -4,7 +4,7 @@ import kotlin.collections.Map as KMap
 
 @PublishedApi
 internal fun <K,V> newMap(vararg entries: Pair<K, V>) : MutableMap<K,V> {
-    val iterable = entries.map { arrayOf(it.first,it.second) }.toTypedArray()
+    val iterable = entries.map { arrayOf(it.first,it.second) }
     return js("new Map(iterable)")
 }
 

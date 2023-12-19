@@ -34,3 +34,8 @@ fun <T> List<T>.lastOrNull(): T? = if (size <= 0) null else get(size - 1)
 val <T> List<T>.indices get() = 0..<size
 
 fun <T> List<T>.getOrNull(index: Int): T? = if (index >= size) null else get(index)
+
+fun <T, R> List<T>.mapIndexed(fn: (index: Int, item: T) -> R): List<R> = buildList {
+    var index = 0
+    this@mapIndexed.forEach { add(fn(index++,it)) }
+}

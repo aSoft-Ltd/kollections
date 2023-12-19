@@ -20,6 +20,8 @@ actual fun <T> Iterable<T>.firstOrNull(predicate: (item: T) -> Boolean): T? {
 
 actual fun <T> Iterable<T>.find(predicate: (item: T) -> Boolean): T? = firstOrNull(predicate)
 
+actual fun <T> Iterable<T>.all(predicate: (item: T) -> Boolean): Boolean = unsafeCast<Array<T>>().all(predicate)
+
 actual fun <T> Iterable<T>.joinToString(
     separator: CharSequence,
     prefix: CharSequence,
