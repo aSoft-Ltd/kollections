@@ -16,6 +16,8 @@ actual external interface List<out T> : Collection<T> {
     fun at(index: Int): T?
 
     fun indexOf(item: @UnsafeVariance T): Int
+
+    fun filter(predicate: (item: T) -> Boolean): List<T>
 }
 
 actual val <T> List<T>.size get() = length

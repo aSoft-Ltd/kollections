@@ -21,7 +21,7 @@ actual inline fun <T> MutableSet<T>.addAll(items: Set<T>) {
     kAddAll(items)
 }
 
-actual inline fun <T> MutableSet<T>.addAll(items: Collection<T>) {
+actual inline fun <T> MutableSet<T>.addAll(items: Iterable<T>) {
     kAddAll(items)
 }
 

@@ -10,7 +10,7 @@ expect fun <T> MutableSet<T>.addAll(vararg items: T)
 
 expect fun <T> MutableSet<T>.addAll(items: Set<T>)
 
-expect fun <T> MutableSet<T>.addAll(items: Collection<T>)
+expect fun <T> MutableSet<T>.addAll(items: Iterable<T>)
 
 expect operator fun <T> MutableSet<T>.plus(item: T)
 

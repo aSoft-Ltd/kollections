@@ -40,9 +40,9 @@ class ListTest {
 
     @Test
     fun can_get_the_iterator_out() {
-        val list = listOf(1,2,3,4,5)
+        val list = listOf(1, 2, 3, 4, 5)
         val iterator = list.iterator()
-        while(iterator.hasNext()) {
+        while (iterator.hasNext()) {
             val item = iterator.next()
             println(item)
         }
@@ -50,7 +50,7 @@ class ListTest {
 
     @Test
     fun should_be_able_to_loop_through_a_mutable_list() {
-        mutableListOf("A","B","C","D").forEach {
+        mutableListOf("A", "B", "C", "D").forEach {
             println(it)
         }
     }
@@ -61,5 +61,13 @@ class ListTest {
         mutableListOf<String>().forEach {
             println(it)
         }
+    }
+
+    @Test
+    fun should_convert_a_list_into_a_set() {
+        var count = 0
+        val list = listOf(4, 5, 2, 5, 7, 8, 9).filter { it < 6 }.toSet()
+        list.forEach { count += it }
+        expect(count).toBe(4 + 5 + 2)
     }
 }

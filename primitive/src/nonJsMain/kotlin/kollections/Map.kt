@@ -14,4 +14,6 @@ actual inline val <K, V> Map<K, V>.size get() = size
 
 actual inline operator fun <K, V> Map<K, V>.get(key: K): V? = get(key)
 
+actual inline fun <K, V> Map<K, V>.containsKey(key: K) = containsKey(key)
+
 actual inline fun <K, V> Map<K, V>.getValue(key: K): V = get(key) ?: throw NoSuchElementException("Element with key $key was not found")
