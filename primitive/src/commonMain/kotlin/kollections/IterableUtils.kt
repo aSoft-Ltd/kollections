@@ -53,3 +53,6 @@ expect fun <T> Iterable<T>.last(predicate: (item: T) -> Boolean): T
 expect fun <T> Iterable<T>.lastOrNull(predicate: (item: T) -> Boolean): T?
 
 expect fun <T> Iterable<T>.filter(predicate: (item: T) -> Boolean) : List<T>
+
+expect inline fun <T, R : Comparable<R>> Iterable<T>.sortedBy(crossinline selector: (T) -> R?):List<T>
+expect inline fun <T, R : Comparable<R>> Iterable<T>.sortedByDescending(crossinline selector: (T) -> R?) : List<T>

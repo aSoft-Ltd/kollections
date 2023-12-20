@@ -36,22 +36,10 @@ actual inline fun <T> MutableList<T>.addAll(items: Array<T>) {
     kAddAll(items)
 }
 
-actual inline operator fun <T> MutableList<T>.plus(item: T) {
-    kPlus(item)
-}
-
-actual inline operator fun <T> MutableList<T>.plus(items: Iterable<T>) {
-    kPlus(items)
-}
-
 actual inline fun <T> MutableList<T>.remove(item: T): T? = if (remove(item)) item else null
 
 actual inline fun <T> MutableList<T>.removeAll(items: Iterable<T>) {
     kRemoveAll(items)
-}
-
-actual inline operator fun <T> MutableList<T>.minus(item: T) {
-    kMinus(item)
 }
 
 actual inline fun <T> MutableList<T>.clear() = clear()

@@ -1,5 +1,7 @@
 package kollections
 
+import kotlin.collections.sortByDescending
+import kotlin.collections.sortedBy
 import kotlin.collections.find as kFind
 import kotlin.collections.first as kFirst
 import kotlin.collections.firstOrNull as kFirstOrNull
@@ -21,6 +23,8 @@ import kotlin.collections.all as kAll
 import kotlin.collections.any as kAny
 import kotlin.collections.chunked as kChunked
 import kotlin.collections.filter as kFilter
+import kotlin.collections.sortedByDescending as kSortedByDescending
+import kotlin.collections.sortedBy as kSortedBy
 
 actual inline fun <T> Iterable<T>.forEachIndexed(block: (index: Int, item: T) -> Unit) = kForEachIndexed(block)
 actual inline fun <T> Iterable<T>.forEach(block: (item: T) -> Unit) = kForEach(block)
@@ -71,3 +75,6 @@ actual inline fun <T> Iterable<T>.lastOrNull(): T? = kLastOrNull()
 actual inline fun <T> Iterable<T>.last(predicate: (item: T) -> Boolean): T = kLast(predicate)
 actual inline fun <T> Iterable<T>.lastOrNull(predicate: (item: T) -> Boolean): T? = kLast(predicate)
 actual inline fun <T> Iterable<T>.filter(predicate: (item: T) -> Boolean) = kFilter(predicate)
+
+actual inline fun <T, R : Comparable<R>> Iterable<T>.sortedBy(crossinline selector: (T) -> R?):List<T> = kSortedBy(selector)
+actual inline fun <T, R : Comparable<R>> Iterable<T>.sortedByDescending(crossinline selector: (T) -> R?) = kSortedByDescending(selector)

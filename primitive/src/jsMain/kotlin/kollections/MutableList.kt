@@ -37,15 +37,6 @@ actual inline fun <T> MutableList<T>.addAll(items: Iterable<T>) {
 actual inline fun <T> MutableList<T>.addAll(items: Array<T>) {
     items.forEach { push(it) }
 }
-
-actual inline operator fun <T> MutableList<T>.plus(item: T) {
-    push(item)
-}
-
-actual inline operator fun <T> MutableList<T>.plus(items: Iterable<T>) {
-    items.forEach { push(it) }
-}
-
 actual fun <T> MutableList<T>.remove(item: T): T? {
     val idx = indexOf(item)
     if (idx <= 0) return null
@@ -55,10 +46,6 @@ actual fun <T> MutableList<T>.remove(item: T): T? {
 
 actual inline fun <T> MutableList<T>.removeAll(items: Iterable<T>) {
     items.forEach { remove(it) }
-}
-
-actual inline operator fun <T> MutableList<T>.minus(item: T) {
-    remove(item)
 }
 
 actual inline fun <T> MutableList<T>.clear() {

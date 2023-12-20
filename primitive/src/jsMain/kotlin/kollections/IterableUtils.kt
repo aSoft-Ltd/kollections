@@ -1,6 +1,8 @@
+@file:OptIn(ExperimentalContracts::class)
+
 package kollections
 
-import kotlin.collections.toList as kToList
+import kotlin.contracts.ExperimentalContracts
 
 actual fun <T> Iterable<T>.forEach(block: (item: T) -> Unit) = forEach(block)
 
@@ -35,12 +37,22 @@ actual inline fun <reified R> Iterable<*>.filterIsInstance(): List<R> = buildLis
     this@filterIsInstance.forEach { if (it is R) push(it) }
 }
 
-actual inline fun <T> Iterable<T>.toList(): List<T> {
+inline fun <T> Iterable<T>.isList(): Boolean {
+    val tmp = this
+    return js("Array.isArray(tmp)") == true
+}
+
+inline fun <T> Iterable<T>.copyToNewList() : MutableList<T> {
     val tmp = this
     return js("Array.from(tmp)")
 }
 
-actual inline fun <T> Iterable<T>.toMutableList(): MutableList<T> = toList().unsafeCast<MutableList<T>>()
+actual inline fun <T> Iterable<T>.toList(): List<T> {
+    if(isList()) return unsafeCast<List<T>>()
+    return copyToNewList()
+}
+
+actual inline fun <T> Iterable<T>.toMutableList(): MutableList<T> = copyToNewList()
 
 actual fun <T> Iterable<T>.toMutableSet(): MutableSet<T> = toSet().unsafeCast<MutableSet<T>>()
 
@@ -50,18 +62,18 @@ actual inline fun <T> Iterable<T>.toSet(): Set<T> {
 }
 
 actual fun <T, K, V> Iterable<T>.associate(fn: (item: T) -> Pair<K, V>): Map<K, V> = buildMap {
-    this@associate.forEach {
+    this@associate.toList().forEach {
         val (key, value) = fn(it)
         set(key, value)
     }
 }
 
 actual inline fun <T, V> Iterable<T>.associateWith(crossinline fn: (item: T) -> V): Map<T, V> = buildMap {
-    this@associateWith.forEach { set(it, fn(it)) }
+    this@associateWith.toList().forEach { set(it, fn(it)) }
 }
 
 actual inline fun <K, T> Iterable<T>.associateBy(crossinline fn: (item: T) -> K): Map<K, T> = buildMap {
-    this@associateBy.forEach { set(fn(it), it) }
+    this@associateBy.toList().forEach { set(fn(it), it) }
 }
 
 actual fun <T> Iterable<T>.reversed(): List<T> = toList().unsafeCast<Array<T>>().reversed().unsafeCast<List<T>>()
@@ -103,3 +115,6 @@ actual inline fun <T> Iterable<T>.lastOrNull(noinline predicate: (item: T) -> Bo
 }
 
 actual inline fun <T> Iterable<T>.filter(noinline predicate: (item: T) -> Boolean): List<T> = toList().filter(predicate)
+
+actual inline fun <T, R : Comparable<R>> Iterable<T>.sortedBy(crossinline selector: (T) -> R?): List<T> = toList().unsafeCast<Array<T>>().sortedBy(selector).toList()
+actual inline fun <T, R : Comparable<R>> Iterable<T>.sortedByDescending(crossinline selector: (T) -> R?) = toList().unsafeCast<Array<T>>().sortedBy(selector).toList()
