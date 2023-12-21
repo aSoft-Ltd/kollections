@@ -26,9 +26,9 @@ actual inline fun <T> MutableList<T>.addAll(vararg items: T) {
     for (item in items) push(item)
 }
 
-actual inline fun <T> MutableList<T>.addAll(items: List<T>) {
-    for (item in items) push(item)
-}
+//actual inline fun <T> MutableList<T>.addAll(items: List<T>) {
+//    for (item in items) push(item)
+//}
 
 actual inline fun <T> MutableList<T>.addAll(items: Iterable<T>) {
     items.forEach { push(it) }

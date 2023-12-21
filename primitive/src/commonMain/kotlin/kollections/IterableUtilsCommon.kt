@@ -1,5 +1,9 @@
+@file:OptIn(ExperimentalTypeInference::class)
+
 package kollections
 
+import kotlin.experimental.ExperimentalTypeInference
+import kotlin.jvm.JvmName
 import kotlin.collections.List as KList
 import kotlin.collections.buildList as kBuildList
 
@@ -19,6 +23,13 @@ inline fun <T, I : Iterable<T>> I.onEach(crossinline fn: (item: T) -> Unit): I {
     return this
 }
 
+inline fun <T, R : Any> Iterable<T>.mapNotNull(crossinline fn: (item: T) -> R?): List<R> = buildList {
+    this@mapNotNull.forEach {
+        val res = fn(it)
+        if (res != null) add(res)
+    }
+}
+
 inline fun <T> Iterable<T>.filterNotNull(): List<T & Any> = filter { it != null } as List<T & Any>
 
 inline fun <T> Iterable<T>.reduce(crossinline reducer: (acc: T, item: T) -> T): T {
@@ -36,3 +47,52 @@ inline fun <T> Iterable<T>.reduce(crossinline reducer: (acc: T, item: T) -> T): 
     if (count == 0) throw NoSuchElementException("Collection is empty")
     return reduced as T
 }
+
+@JvmName("sumOfDouble")
+@OverloadResolutionByLambdaReturnType
+inline fun <T> Iterable<T>.sumOf(@BuilderInference crossinline fn: (item: T) -> Double): Double {
+    var sum = 0.0
+    forEach { sum += fn(it) }
+    return sum
+}
+
+@JvmName("sumOfInt")
+@OverloadResolutionByLambdaReturnType
+inline fun <T> Iterable<T>.sumOf(crossinline fn: (item: T) -> Int): Int {
+    var sum = 0
+    forEach { sum += fn(it) }
+    return sum
+}
+
+@JvmName("sumOfUInt")
+@OverloadResolutionByLambdaReturnType
+inline fun <T> Iterable<T>.sumOf(crossinline fn: (item: T) -> UInt): UInt {
+    var sum = 0u
+    forEach { sum += fn(it) }
+    return sum
+}
+
+@JvmName("sumOfLong")
+@OverloadResolutionByLambdaReturnType
+inline fun <T> Iterable<T>.sumOf(crossinline fn: (item: T) -> Long): Long {
+    var sum = 0L
+    forEach { sum += fn(it) }
+    return sum
+}
+
+@JvmName("sumOfULong")
+@OverloadResolutionByLambdaReturnType
+inline fun <T> Iterable<T>.sumOf(crossinline fn: (item: T) -> ULong): ULong {
+    var sum = 0uL
+    forEach { sum += fn(it) }
+    return sum
+}
+
+@JvmName("sumOfDouble")
+inline fun Iterable<Double>.sum(): Double = sumOf { it }
+
+@JvmName("sumOfLong")
+inline fun Iterable<Long>.sum(): Long = sumOf { it }
+
+@JvmName("sumOfInt")
+inline fun Iterable<Int>.sum(): Int = sumOf { it }

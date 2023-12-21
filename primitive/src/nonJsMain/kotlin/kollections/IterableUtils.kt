@@ -1,30 +1,34 @@
 package kollections
 
-import kotlin.collections.sortByDescending
-import kotlin.collections.sortedBy
+import kotlin.collections.List as KList
+import kotlin.collections.Set as KSet
+import kotlin.collections.all as kAll
+import kotlin.collections.any as kAny
+import kotlin.collections.Iterable as KIterable
+import kotlin.collections.associate as kAssociate
+import kotlin.collections.associateBy as kAssociateBy
+import kotlin.collections.associateWith as kAssociateWith
+import kotlin.collections.chunked as kChunked
+import kotlin.collections.filter as kFilter
+import kotlin.collections.filterIsInstance as kFilterIsInstance
 import kotlin.collections.find as kFind
 import kotlin.collections.first as kFirst
 import kotlin.collections.firstOrNull as kFirstOrNull
-import kotlin.collections.last as kLast
-import kotlin.collections.lastOrNull as kLastOrNull
 import kotlin.collections.forEach as kForEach
 import kotlin.collections.forEachIndexed as kForEachIndexed
-import kotlin.collections.associate as kAssociate
-import kotlin.collections.associateWith as kAssociateWith
-import kotlin.collections.associateBy as kAssociateBy
-import kotlin.collections.toList as kToList
-import kotlin.collections.toMutableList as kToMutableList
-import kotlin.collections.toSet as kToSet
-import kotlin.collections.toMutableSet as kToMutableSet
 import kotlin.collections.joinToString as kJoinToString
-import kotlin.collections.filterIsInstance as kFilterIsInstance
+import kotlin.collections.last as kLast
+import kotlin.collections.lastOrNull as kLastOrNull
 import kotlin.collections.reversed as kReversed
-import kotlin.collections.all as kAll
-import kotlin.collections.any as kAny
-import kotlin.collections.chunked as kChunked
-import kotlin.collections.filter as kFilter
-import kotlin.collections.sortedByDescending as kSortedByDescending
 import kotlin.collections.sortedBy as kSortedBy
+import kotlin.collections.sortedByDescending as kSortedByDescending
+
+actual inline fun <T> KIterable<T>.toIterable() = this
+actual fun <T> Iterable<T>.isList() : Boolean = this is KList
+actual fun <T> Iterable<T>.asList() : List<T> = this as List
+
+actual fun <T> Iterable<T>.isSet() : Boolean = this is KSet
+actual fun <T> Iterable<T>.asSet() : Set<T> = this as Set
 
 actual inline fun <T> Iterable<T>.forEachIndexed(block: (index: Int, item: T) -> Unit) = kForEachIndexed(block)
 actual inline fun <T> Iterable<T>.forEach(block: (item: T) -> Unit) = kForEach(block)
@@ -49,13 +53,6 @@ actual fun <T> Iterable<T>.joinToString(
 ): String = kJoinToString(separator, prefix, postfix, limit, truncated, transform)
 
 actual inline fun <reified R> Iterable<*>.filterIsInstance(): List<R> = kFilterIsInstance<R>()
-
-actual inline fun <T> Iterable<T>.toList(): List<T> = kToList()
-
-actual inline fun <T> Iterable<T>.toMutableList(): MutableList<T> = kToMutableList()
-
-actual inline fun <T> Iterable<T>.toSet(): Set<T> = kToSet()
-actual inline fun <T> Iterable<T>.toMutableSet(): MutableSet<T> = kToMutableSet()
 
 actual inline fun <T> Iterable<T>.reversed() : List<T> = kReversed()
 

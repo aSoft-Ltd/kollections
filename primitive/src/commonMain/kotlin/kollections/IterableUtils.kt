@@ -1,5 +1,13 @@
 package kollections
 
+import kotlin.collections.Iterable as KIterable
+
+expect fun <T> KIterable<T>.toIterable(): Iterable<T>
+expect fun <T> Iterable<T>.isList() : Boolean
+expect fun <T> Iterable<T>.asList() : List<T>
+expect fun <T> Iterable<T>.isSet() : Boolean
+expect fun <T> Iterable<T>.asSet() : Set<T>
+
 expect fun <T> Iterable<T>.forEach(block: (item: T) -> Unit)
 
 expect fun <T> Iterable<T>.forEachIndexed(block: (index: Int, item: T) -> Unit)
@@ -24,14 +32,6 @@ expect fun <T,V> Iterable<T>.associateWith(fn: (item: T) -> V): Map<T, V>
 expect fun <K, T> Iterable<T>.associateBy(fn: (item: T) -> K): Map<K, T>
 
 expect inline fun <reified R> Iterable<*>.filterIsInstance(): List<R>
-
-expect fun <T> Iterable<T>.toList(): List<T>
-
-expect fun <T> Iterable<T>.toMutableList(): MutableList<T>
-
-expect fun <T> Iterable<T>.toSet(): Set<T>
-
-expect fun <T> Iterable<T>.toMutableSet(): MutableSet<T>
 
 expect fun <T> Iterable<T>.reversed(): List<T>
 

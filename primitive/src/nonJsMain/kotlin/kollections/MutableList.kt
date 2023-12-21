@@ -23,9 +23,9 @@ actual inline fun <T> MutableList<T>.addAll(vararg items: T) {
     kAddAll(items)
 }
 
-actual inline fun <T> MutableList<T>.addAll(items: List<T>) {
-    kAddAll(items)
-}
+//actual inline fun <T> MutableList<T>.addAll(items: List<T>) {
+//    kAddAll(items)
+//}
 
 actual inline fun <T> MutableList<T>.addAll(items: Iterable<T>) {
     kAddAll(items)

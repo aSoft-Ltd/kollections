@@ -17,8 +17,6 @@ actual external interface Set<out T> : Collection<T> {
 
 actual val <T> Set<T>.size get() = size
 
-actual fun <T> Set<T>.toList(): List<T> = buildList { this@toList.forEach { add(it) } }
-
 actual operator fun <T> Set<T>.iterator(): Iterator<T> = toList().iterator()
 
 actual inline fun <reified T> Set<T>.toTypedArray() = toList().unsafeCast<Array<T>>()

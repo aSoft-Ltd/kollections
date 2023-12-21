@@ -3,6 +3,29 @@
 package kollections
 
 import kotlin.contracts.ExperimentalContracts
+import kotlin.collections.Iterable as KIterable
+
+actual fun <T> KIterable<T>.toIterable(): Iterable<T> = buildList {
+    this@toIterable.forEach { add(it) }
+}
+
+actual inline fun <T> Iterable<T>.isList(): Boolean {
+    val tmp = this
+    return js("Array.isArray(tmp)") == true
+}
+actual fun <T> Iterable<T>.asList() : List<T> {
+    if(!isList()) throw ClassCastException("$this is not a javascript list (array)")
+    return unsafeCast<List<T>>()
+}
+
+actual fun <T> Iterable<T>.isSet() : Boolean {
+    val tmp = this
+    return js("tmp instanceof Set")
+}
+actual fun <T> Iterable<T>.asSet() : Set<T> {
+    if(!isSet()) throw ClassCastException("$this is not a javascript set")
+    return unsafeCast<Set<T>>()
+}
 
 actual fun <T> Iterable<T>.forEach(block: (item: T) -> Unit) = forEach(block)
 
@@ -35,30 +58,6 @@ actual fun <T> Iterable<T>.joinToString(
 
 actual inline fun <reified R> Iterable<*>.filterIsInstance(): List<R> = buildList {
     this@filterIsInstance.forEach { if (it is R) push(it) }
-}
-
-inline fun <T> Iterable<T>.isList(): Boolean {
-    val tmp = this
-    return js("Array.isArray(tmp)") == true
-}
-
-inline fun <T> Iterable<T>.copyToNewList() : MutableList<T> {
-    val tmp = this
-    return js("Array.from(tmp)")
-}
-
-actual inline fun <T> Iterable<T>.toList(): List<T> {
-    if(isList()) return unsafeCast<List<T>>()
-    return copyToNewList()
-}
-
-actual inline fun <T> Iterable<T>.toMutableList(): MutableList<T> = copyToNewList()
-
-actual fun <T> Iterable<T>.toMutableSet(): MutableSet<T> = toSet().unsafeCast<MutableSet<T>>()
-
-actual inline fun <T> Iterable<T>.toSet(): Set<T> {
-    val tmp = this
-    return js("new Set(tmp)")
 }
 
 actual fun <T, K, V> Iterable<T>.associate(fn: (item: T) -> Pair<K, V>): Map<K, V> = buildMap {
