@@ -14,7 +14,8 @@ import kotlinx.serialization.descriptors.buildSerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
-class ListSerializer<T>(serializer: KSerializer<T>) : KSerializer<List<T>> {
+@PublishedApi
+internal class ListSerializer<T>(serializer: KSerializer<T>) : KSerializer<List<T>> {
     override val descriptor: SerialDescriptor = buildSerialDescriptor(
         serialName = "kollections.List",
         kind = StructureKind.LIST,

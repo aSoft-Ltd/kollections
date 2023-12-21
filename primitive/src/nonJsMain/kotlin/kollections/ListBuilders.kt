@@ -2,6 +2,7 @@
 
 package kollections
 
+import kotlin.collections.toSet as kToSet
 actual inline fun <T> emptyList(): List<T> = kotlin.collections.emptyList<T>() as List<T>
 actual inline fun <T> listOf(): List<T> = kotlin.collections.listOf<T>() as List<T>
 
@@ -12,3 +13,4 @@ actual inline fun <T> mutableListOf(): MutableList<T> = kotlin.collections.mutab
 actual inline fun <T> mutableListOf(vararg items: T): MutableList<T> = kotlin.collections.mutableListOf(*items)
 
 actual inline fun <T> List<T>.toList(): List<T> = this as List<T>
+actual inline fun <T> List<T>.toSet(): Set<T> = kToSet()

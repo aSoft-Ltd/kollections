@@ -15,3 +15,5 @@ expect inline fun <T> mutableListOf() : MutableList<T>
 expect inline fun <T> mutableListOf(vararg items: T) : MutableList<T>
 
 expect inline fun <T> KList<T>.toList(): List<T>
+
+expect inline fun <T> KList<T>.toSet(): Set<T>
