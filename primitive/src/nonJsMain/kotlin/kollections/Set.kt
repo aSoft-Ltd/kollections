@@ -4,7 +4,7 @@ package kollections
 
 import kotlin.collections.toTypedArray as kToTypedArray
 
-actual typealias Set<T> = kotlin.collections.Set<T>
+actual typealias Set<T> = kotlin.collections.Set<@UnsafeVariance T>
 
 actual val <T> Set<T>.size get() = size
 

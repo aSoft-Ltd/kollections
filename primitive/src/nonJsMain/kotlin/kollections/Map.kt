@@ -2,7 +2,7 @@
 
 package kollections
 
-actual typealias Map<K, V> = kotlin.collections.Map<K, V>
+actual typealias Map<K, V> = kotlin.collections.Map<K, @UnsafeVariance V>
 
 actual inline val <K, V> Map<K, V>.keys get() = keys
 

@@ -4,7 +4,7 @@ package kollections
 
 import kotlin.collections.toTypedArray as kToTypedArray
 
-actual typealias List<T> = kotlin.collections.List<T>
+actual typealias List<T> = kotlin.collections.List<@UnsafeVariance T>
 
 actual inline val <T> List<T>.size get() = size
 
