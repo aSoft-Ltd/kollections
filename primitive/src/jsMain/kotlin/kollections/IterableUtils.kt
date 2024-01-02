@@ -13,17 +13,19 @@ actual inline fun <T> Iterable<T>.isList(): Boolean {
     val tmp = this
     return js("Array.isArray(tmp)") == true
 }
-actual fun <T> Iterable<T>.asList() : List<T> {
-    if(!isList()) throw ClassCastException("$this is not a javascript list (array)")
+
+actual fun <T> Iterable<T>.asList(): List<T> {
+    if (!isList()) throw ClassCastException("$this is not a javascript list (array)")
     return unsafeCast<List<T>>()
 }
 
-actual fun <T> Iterable<T>.isSet() : Boolean {
+actual fun <T> Iterable<T>.isSet(): Boolean {
     val tmp = this
     return js("tmp instanceof Set")
 }
-actual fun <T> Iterable<T>.asSet() : Set<T> {
-    if(!isSet()) throw ClassCastException("$this is not a javascript set")
+
+actual fun <T> Iterable<T>.asSet(): Set<T> {
+    if (!isSet()) throw ClassCastException("$this is not a javascript set")
     return unsafeCast<Set<T>>()
 }
 
@@ -39,10 +41,13 @@ actual fun <T> Iterable<T>.find(predicate: (item: T) -> Boolean): T? = firstOrNu
 actual fun <T> Iterable<T>.all(predicate: (item: T) -> Boolean): Boolean = unsafeCast<Array<T>>().all(predicate)
 
 actual fun <T> Iterable<T>.any(predicate: (item: T) -> Boolean): Boolean {
+    val iterator = values()
     var found = false
-    forEach {
-        found = predicate(it)
-        if (found) return@forEach
+    while (true) {
+        val item = iterator.next()
+        if (item.done) break
+        found = predicate(item.value)
+        if (found) break
     }
     return found
 }
@@ -88,10 +93,12 @@ actual inline fun <T> Iterable<T>.firstOrNull(): T? = firstOrNull { true }
 actual inline fun <T> Iterable<T>.first(noinline predicate: (item: T) -> Boolean): T = firstOrNull(predicate) ?: throw NoSuchElementException()
 actual fun <T> Iterable<T>.firstOrNull(predicate: (item: T) -> Boolean): T? {
     var found: T? = null
-    forEach {
-        if (predicate(it)) {
-            found = it
-            return@forEach
+    val iterator = values()
+    while (true) {
+        val item = iterator.next()
+        if (item.done) break
+        if (predicate(item.value)) {
+            found = item.value
         }
     }
     return found

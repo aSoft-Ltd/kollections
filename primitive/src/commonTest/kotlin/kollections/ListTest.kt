@@ -70,4 +70,10 @@ class ListTest {
         list.forEach { count += it }
         expect(count).toBe(4 + 5 + 2)
     }
+
+    @Test
+    fun should_be_able_to_find_a_specific_predicate() {
+        val list = listOf("A", "B", "C", "D")
+        expect(list.any { it == "A" }).toBe(true)
+    }
 }
