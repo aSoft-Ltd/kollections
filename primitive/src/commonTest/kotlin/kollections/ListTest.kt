@@ -1,6 +1,7 @@
 package kollections
 
 import kommander.expect
+import kotlin.math.exp
 import kotlin.test.Test
 
 class ListTest {
@@ -75,5 +76,12 @@ class ListTest {
     fun should_be_able_to_find_a_specific_predicate() {
         val list = listOf("A", "B", "C", "D")
         expect(list.any { it == "A" }).toBe(true)
+    }
+
+    @Test
+    fun should_map_list() {
+        val list = listOf("ASSS", "BD", "CEE", "D")
+        val newList = list.map { it.length }
+        expect(newList.size).toBe(4)
     }
 }
