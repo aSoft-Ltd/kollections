@@ -15,7 +15,7 @@ operator fun <T> List<T>.minus(item: T): List<T> = buildList {
 }
 
 operator fun <T> List<T>.minus(items: Iterable<T>): List<T> = buildList {
-    this@minus.forEach { if(!items.contains(it)) add(it) }
+    this@minus.forEach { if (!items.contains(it)) add(it) }
 }
 
 fun <T> List<T>.first(): T {
@@ -37,5 +37,20 @@ fun <T> List<T>.getOrNull(index: Int): T? = if (index >= size) null else get(ind
 
 fun <T, R> List<T>.mapIndexed(fn: (index: Int, item: T) -> R): List<R> = buildList {
     var index = 0
-    this@mapIndexed.forEach { add(fn(index++,it)) }
+    this@mapIndexed.forEach { add(fn(index++, it)) }
+}
+
+/**
+ * Returns a sublist from
+ * @param start (inclusive) the beginning of the list
+ * @param end (exclusive) the end of the sublist
+ */
+inline fun <E> List<E>.subList(start: Int = 0, end: Int = size): List<E> {
+    if (end <= (start - 1)) return emptyList()
+    val out = mutableListOf<E>()
+    val range = start..<end
+    forEachIndexed { index, item ->
+        if (index in range) out.add(item)
+    }
+    return out
 }

@@ -84,4 +84,29 @@ class ListTest {
         val newList = list.map { it.length }
         expect(newList.size).toBe(4)
     }
+
+    @Test
+    fun should_be_able_to_remove_an_item_from_a_list() {
+        val list = mutableListOf("John", "Jane", "Jack", "Jill")
+        expect(list.size).toBe(4)
+        list.remove("Jane")
+        expect(list.size).toBe(3)
+    }
+
+    @Test
+    fun should_be_able_to_get_a_sub_list() {
+        val list = mutableListOf("John", "Jane", "Jack", "Jill")
+        val sub = list.subList(0, 3)
+        expect(sub.size).toBe(3)
+    }
+
+    @Test
+    fun should_be_able_to_retain_all_items_from_a_list() {
+        val list = mutableListOf("John", "Jane", "Jack", "Jill")
+        list.retainAll(listOf("Jane", "Jack"))
+        list.forEach {
+            println(it)
+        }
+        expect(list.size).toBe(2)
+    }
 }

@@ -20,4 +20,4 @@ listOf("kommander", "kotlinx-interoperable").forEach {
 rootProject.name = "kollections"
 
 // submodules
-includeSubs("kollections", ".", "interoperable", "atomic", "primitive")
+includeSubs("kollections", ".", "interoperable", "atomic", "primitive", "stacks")

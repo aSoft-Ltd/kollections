@@ -37,9 +37,10 @@ actual inline fun <T> MutableList<T>.addAll(items: Iterable<T>) {
 actual inline fun <T> MutableList<T>.addAll(items: Array<T>) {
     items.forEach { push(it) }
 }
+
 actual fun <T> MutableList<T>.remove(item: T): T? {
     val idx = indexOf(item)
-    if (idx <= 0) return null
+    if (idx < 0) return null
     splice(idx, 1)
     return item
 }

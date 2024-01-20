@@ -96,3 +96,44 @@ inline fun Iterable<Long>.sum(): Long = sumOf { it }
 
 @JvmName("sumOfInt")
 inline fun Iterable<Int>.sum(): Int = sumOf { it }
+
+fun <E, R : Comparable<R>> Iterable<E>.maxOf(selector: (E) -> R): R {
+    val iterator = toList().iterator()
+    if (!iterator.hasNext()) throw NoSuchElementException()
+    var maxValue = selector(iterator.next())
+    while (iterator.hasNext()) {
+        val v = selector(iterator.next())
+        if (maxValue < v) {
+            maxValue = v
+        }
+    }
+    return maxValue
+}
+
+fun <E, R : Comparable<R>> Iterable<E>.minByOrNull(selector: (E) -> R): E? {
+    val iterator = toList().iterator()
+    if (!iterator.hasNext()) return null
+    var minElem = iterator.next()
+    if (!iterator.hasNext()) return minElem
+    var minValue = selector(minElem)
+    do {
+        val e = iterator.next()
+        val v = selector(e)
+        if (minValue > v) {
+            minElem = e
+            minValue = v
+        }
+    } while (iterator.hasNext())
+    return minElem
+}
+
+fun <E> Iterable<E>.take(n: Int): List<E> {
+    if (n <= 0) return emptyList()
+    return buildList {
+        var count = 0
+        this@take.forEach {
+            if (count < n) add(it)
+            count++
+        }
+    }
+}
