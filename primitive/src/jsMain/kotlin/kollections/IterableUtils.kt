@@ -123,4 +123,4 @@ actual inline fun <T> Iterable<T>.lastOrNull(noinline predicate: (item: T) -> Bo
 actual inline fun <T> Iterable<T>.filter(noinline predicate: (item: T) -> Boolean): List<T> = toList().filter(predicate)
 
 actual inline fun <T, R : Comparable<R>> Iterable<T>.sortedBy(crossinline selector: (T) -> R?): List<T> = toList().unsafeCast<Array<T>>().sortedBy(selector).toList()
-actual inline fun <T, R : Comparable<R>> Iterable<T>.sortedByDescending(crossinline selector: (T) -> R?) = toList().unsafeCast<Array<T>>().sortedBy(selector).toList()
+actual inline fun <T, R : Comparable<R>> Iterable<T>.sortedByDescending(crossinline selector: (T) -> R?) = toList().unsafeCast<Array<T>>().sortedByDescending(selector).toList()
