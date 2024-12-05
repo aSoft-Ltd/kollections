@@ -137,3 +137,9 @@ fun <E> Iterable<E>.take(n: Int): List<E> {
         }
     }
 }
+
+fun <K, V> kollections.Map<K, V>.toKMap(): kotlin.collections.Map<K, V> = this.mapValues {
+    it
+}.values.toKList().associate {
+    it.key to it.value
+}
