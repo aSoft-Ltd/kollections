@@ -13,11 +13,10 @@ buildscript {
 
 plugins {
     kotlin("multiplatform")
+    id("org.jetbrains.kotlinx.atomicfu")
     id("tz.co.asoft.library")
     signing
 }
-
-apply(plugin = "kotlinx-atomicfu")
 
 description = "A Kotlin Multiplatform Mutable Collections that are thread safe"
 
